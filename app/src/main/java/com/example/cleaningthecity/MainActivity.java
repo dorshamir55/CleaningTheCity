@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView orange;
     private ImageView pink;
     private ImageView black;
+    private ImageView[] lifes = new ImageView[3];
+
 
     // Size
     private int frameHeight;
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Score
     private int score = 0;
+
+    //life
+    private int life_count;
 
     // Initialize Class
     private Handler handler = new Handler();
@@ -79,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
         orange = (ImageView) findViewById(R.id.orange);
         pink = (ImageView) findViewById(R.id.pink);
         black = (ImageView) findViewById(R.id.black);
+        lifes[0] = (ImageView) findViewById(R.id.heart);
+        lifes[1] = (ImageView) findViewById(R.id.heart2);
+        lifes[2] = (ImageView) findViewById(R.id.heart3);
 
 
         // Get screen size.
@@ -113,8 +121,11 @@ public class MainActivity extends AppCompatActivity {
         black.setX(-80);
         black.setY(-80);
 
+        //score label
         scoreLabel.setText(getString(R.string.game_score) + "0");
 
+        //life count
+        life_count = 3;
 
     }
 
@@ -214,24 +225,28 @@ public class MainActivity extends AppCompatActivity {
 
         if (0 <= blackCenterX && blackCenterX <= boxSize &&
                 boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
+            lifes[life_count-1].setImageResource(R.drawable.heart_g);
+            life_count--;
 
-            // Stop Timer!!
-            timer.cancel();
-            timer = null;
+            blackX = -10;
 
-            sound.playOverSound();
+            if(life_count==0)
+            {
+                // Stop Timer!!
+                timer.cancel();
+                timer = null;
 
-            // Show Result
-            String name = getIntent().getStringExtra("PlayerName");
-            Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-            Bundle extras = new Bundle();
-            extras.putInt("SCORE", score);
-            extras.putString("PlayerName",name);
-            intent.putExtras(extras);
-            startActivity(intent);
-//            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-//            intent.putExtra("SCORE", score);
-//            startActivity(intent);
+                sound.playOverSound();
+
+                // Show Result
+                String name = getIntent().getStringExtra("PlayerName");
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+                Bundle extras = new Bundle();
+                extras.putInt("SCORE", score);
+                extras.putString("PlayerName",name);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
 
         }
 

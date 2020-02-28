@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/player_name"
             android:layout_marginRight="20dp"
-            />
+            android:inputType="text"/><!--//one line only-->
 
         <Button
             android:id="@+id/btn_start"

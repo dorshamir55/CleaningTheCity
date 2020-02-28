@@ -5,14 +5,54 @@
     android:orientation="vertical"
     >
 
-    <TextView
-        android:id="@+id/scoreLabel"
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Score : 300"
-        android:textSize="18sp"
-        android:paddingLeft="10dp"
-        android:gravity="center_vertical"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/scoreLabel"
+            android:layout_width="129dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/game_score"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/levelLabel"
+            android:layout_width="137dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:text="@string/level_1"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/heart" />
+
+        <ImageView
+            android:id="@+id/heart2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/heart" />
+
+        <ImageView
+            android:id="@+id/heart3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/heart" />
+
+
+
+    </TableRow>
 
     <FrameLayout
         android:id="@+id/frame"

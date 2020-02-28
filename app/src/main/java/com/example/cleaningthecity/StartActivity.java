@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 //
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StartActivity extends AppCompatActivity {
 
+    private Button startButton;
+    private EditText nameEditText;
     //private InterstitialAd interstitial;
 
     @Override
@@ -23,12 +26,29 @@ public class StartActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        startButton = (Button)(findViewById(R.id.btn_start));
+        nameEditText = (EditText)(findViewById(R.id.editText_name));
+
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (nameEditText.getText().toString().trim().length()==0) { //trim=remove spaces to avoid blank name
+                    nameEditText.setError(getString(R.string.check_enter_name));
+                } else {
+                    startGame();
+                }
+            }
+        });
     }
 
 
-
-    public void startGame(View view) {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    public void startGame() {
+        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        Intent intent = new Intent(StartActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("PlayerName", nameEditText.getText().toString());
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     // Disable Return Button

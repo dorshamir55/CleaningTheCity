@@ -19,14 +19,16 @@ public class StartActivity extends AppCompatActivity {
 
     private Button startButton;
     private EditText nameEditText;
+    private Button recordsButton;
     //private InterstitialAd interstitial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         startButton = (Button)(findViewById(R.id.btn_start));
+        recordsButton = (Button)(findViewById(R.id.btn_records));
         nameEditText = (EditText)(findViewById(R.id.editText_name));
 
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +39,14 @@ public class StartActivity extends AppCompatActivity {
                 } else {
                     startGame();
                 }
+            }
+        });
+
+        recordsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartActivity.this, RecordsActivity.class);
+                startActivity(intent);
             }
         });
     }

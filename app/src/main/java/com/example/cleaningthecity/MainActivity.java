@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         black.setX(-80);
         black.setY(-80);
 
-        scoreLabel.setText("Score : 0");
+        scoreLabel.setText(getString(R.string.game_score) + "0");
 
 
     }
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         box.setY(boxY);
 
-        scoreLabel.setText("Score : " + score);
+        scoreLabel.setText(getString(R.string.game_score) + score);
 
     }
 

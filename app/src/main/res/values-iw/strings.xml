@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CleaningTheCity</string>
+    <string name="game_name">נקיון העיר</string>
+    <string name="try_again">נסה שנית</string>
+    <string name="game_over">המשחק נגמר!</string>
+    <string name="records_table">שיאים</string>
+    <string name="start_game">התחל</string>
+    <string name="check_enter_name">הכנס את שמך</string>
+    <string name="high_score">"שיא: "</string>
+    <string name="player_name">שם שחקן</string>
+    <string name="game_score">"ניקוד: "</string>
+    <string name="records_score">ניקוד</string>
+    <string name="records_rank">דירוג</string>
+    <string name="records_name">שם</string>
+</resources>

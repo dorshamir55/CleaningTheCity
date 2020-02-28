@@ -15,7 +15,7 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
@@ -37,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
             editor.commit();
 
         } else {
-            highScoreLabel.setText("High Score : " + highScore);
+            highScoreLabel.setText(getString(R.string.high_score) + highScore);
 
         }
 
@@ -45,7 +45,7 @@ public class ResultActivity extends AppCompatActivity {
 
 
     public void tryAgain(View view) {
-        startActivity(new Intent(getApplicationContext(), StartActivity.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
     
 

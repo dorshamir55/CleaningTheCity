@@ -1,25 +1,25 @@
 package com.example.cleaningthecity;
 
-public class Player {
-    private int rank;
+public class Player implements Comparable<Player> {
+    //private int rank;
     private int score;
     private String name;
 
-    public Player(int rank, int score, String name) {
-        this.rank=rank;
+    public Player(int score, String name) {
+        //this.rank=rank;
         this.score = score;
         this.name = name;
     }
 
     public Player(){}
 
-    public int getRank() {
-        return rank;
-    }
+//    public int getRank() {
+//        return rank;
+//    }
 
-    public void setRank(int rank) {
-        this.rank=rank;
-    }
+//    public void setRank(int rank) {
+//        this.rank=rank;
+//    }
 
     public int getScore() {
         return score;
@@ -35,5 +35,10 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return o.getScore()-score;
     }
 }

@@ -7,21 +7,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "CleaningTheCity.db";
     public static final String TABLE_NAME = "records";
-    public static final String COL_1 = "score";
-    public static final String COL_2 = "name";
+    public static final String COL_1 = "rank";
+    public static final String COL_2 = "score";
+    public static final String COL_3 = "name";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+       // SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table "+TABLE_NAME+" (score INTEGER, name TEXT)");
+        sqLiteDatabase.execSQL("create table "+TABLE_NAME+" (rank INTEGER,score INTEGER, name TEXT)");
         //sqLiteDatabase.execSQL("create table "+TABLE_NAME_2+" (idNumber INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, range INTEGER, latitude REAL, longitude REAL, outOfBounds INTEGER)");
     }
 
@@ -37,9 +40,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertDataRecords(int i_score, String i_name) {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, i_score);
-        contentValues.put(COL_2, i_name);
-
+        contentValues.put(COL_2, i_score);
+        contentValues.put(COL_3,i_name);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1)
             return false;
@@ -52,6 +54,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, i_score);
         contentValues.put(COL_2, i_name);
+
         db.update(DatabaseHelper.TABLE_NAME, contentValues, "name = ?", new String[]{i_name});
         return true;
     }
@@ -60,6 +63,24 @@ class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
         return res;
+    }
+
+    public ArrayList<Player> getAllData()
+    {
+        ArrayList<Player> arrayList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+        while(cursor.moveToNext())
+        {
+            //int rank = cursor.getInt(0);
+            int score = cursor.getInt(0);
+            String name = cursor.getString(1);
+            Player player = new Player(score,name);
+
+            arrayList.add(player);
+        }
+        Collections.sort(arrayList);
+        return arrayList;
     }
 
 }

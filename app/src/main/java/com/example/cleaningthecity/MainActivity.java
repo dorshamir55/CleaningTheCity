@@ -222,9 +222,11 @@ public class MainActivity extends AppCompatActivity {
             sound.playOverSound();
 
             // Show Result
+            String name = getIntent().getStringExtra("PlayerName");
             Intent intent = new Intent(MainActivity.this, ResultActivity.class);
             Bundle extras = new Bundle();
             extras.putInt("SCORE", score);
+            extras.putString("PlayerName",name);
             intent.putExtras(extras);
             startActivity(intent);
 //            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);

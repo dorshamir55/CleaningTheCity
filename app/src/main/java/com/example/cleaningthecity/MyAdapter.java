@@ -38,8 +38,8 @@ public class MyAdapter extends BaseAdapter {
         TextView t3_name = (TextView)convertView.findViewById(R.id.name_lbl);
 
         Player player = arrayList.get(position);
-        t1_rank.setText(player.getRank());
-        t2_score.setText(player.getScore());
+        t1_rank.setText(String.valueOf(position+1));
+        t2_score.setText(String.valueOf(player.getScore()));
         t3_name.setText(player.getName());
 
         return convertView;

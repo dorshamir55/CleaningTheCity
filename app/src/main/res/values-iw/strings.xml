@@ -16,4 +16,5 @@
     <string name="level_1">"שלב: "</string>
     <string name="tap_to_start">לחץ כדי להתחיל</string>
     <string name="pb_Status">טבלת ניקוד נטענה</string>
+    <string name="back_menu">חזרה לתפריט</string>
 </resources>

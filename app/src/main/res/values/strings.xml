@@ -7,12 +7,13 @@
     <string name="start_game">Start</string>
     <string name="check_enter_name">Insert your name</string>
     <string name="high_score">"High score: "</string>
-    <string name="player_name">player name</string>
+    <string name="player_name">Player name</string>
     <string name="game_score">"score: "</string>
-    <string name="records_score">score</string>
+    <string name="records_score">Score</string>
     <string name="records_rank">Rank</string>
     <string name="records_name">Name</string>
     <string name="level_1">Level :</string>
     <string name="tap_to_start">Tap to Start</string>
     <string name="pb_Status">High Score Table Loaded</string>
+    <string name="back_menu">Back menu</string>
 </resources>

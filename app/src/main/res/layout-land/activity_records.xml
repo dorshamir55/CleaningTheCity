@@ -51,7 +51,7 @@
     <ListView
         android:id="@+id/listView_records"
         android:layout_width="match_parent"
-        android:layout_height="169dp"
+        android:layout_height="170dp"
         android:layout_below="@+id/linear"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
@@ -64,7 +64,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="180dp"
         android:progress="10"
         android:progressDrawable="@drawable/circle" />
 

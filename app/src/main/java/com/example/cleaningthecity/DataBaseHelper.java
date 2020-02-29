@@ -16,7 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "records";
     public static final String COL_1 = "score";
     public static final String COL_2 = "name";
-    public static final Integer TABLE_SIZE = 10;
+    public static final Integer TABLE_SIZE_LIMIT = 10;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -40,8 +40,18 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean insertDataRecords(int i_score, String i_name) {
         SQLiteDatabase db= this.getWritableDatabase();
-        if(QueryNumEntries() == TABLE_SIZE)
+        if(QueryNumEntries() >= TABLE_SIZE_LIMIT)
         {
+            Cursor cursor = db.rawQuery("select MIN("+COL_1+ "),"+COL_2 + " from "+TABLE_NAME ,null);
+            cursor.moveToNext();
+            int minScore = cursor.getInt(0);
+            String minName = cursor.getString(1);
+
+            if(minScore<i_score)
+            {
+                db.delete(TABLE_NAME,COL_1 +"=?"+" and "+
+                        COL_2+"=?",new String[]{String.valueOf(minScore),minName});
+            }
 
         }
         ContentValues contentValues = new ContentValues();

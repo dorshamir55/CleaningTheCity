@@ -1,6 +1,6 @@
 package com.example.cleaningthecity;
 
-public class Player implements Comparable<Player> {
+public class Player  {
     //private int rank;
     private int score;
     private String name;
@@ -37,8 +37,5 @@ public class Player implements Comparable<Player> {
         this.name = name;
     }
 
-    @Override
-    public int compareTo(Player o) {
-        return o.getScore()-score;
-    }
+
 }

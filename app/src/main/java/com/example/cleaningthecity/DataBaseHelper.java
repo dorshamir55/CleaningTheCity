@@ -3,6 +3,7 @@ package com.example.cleaningthecity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -15,6 +16,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "records";
     public static final String COL_1 = "score";
     public static final String COL_2 = "name";
+    public static final Integer TABLE_SIZE = 10;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -38,14 +40,26 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean insertDataRecords(int i_score, String i_name) {
         SQLiteDatabase db= this.getWritableDatabase();
+        if(QueryNumEntries() == TABLE_SIZE)
+        {
+
+        }
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, i_score);
         contentValues.put(COL_2,i_name);
         long result = db.insert(TABLE_NAME, null, contentValues);
+
+
         if(result == -1)
             return false;
         else
             return true;
+    }
+
+    public long QueryNumEntries()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return DatabaseUtils.queryNumEntries(db, TABLE_NAME);
     }
 
     /*public boolean updateDataRecords(int i_score, String i_name){
@@ -68,7 +82,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     {
         ArrayList<Player> arrayList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME + " ORDER BY " + COL_1 + " DESC",null);
         while(cursor.moveToNext())
         {
             int score = cursor.getInt(0);
@@ -77,7 +91,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
             arrayList.add(player);
         }
-        Collections.sort(arrayList);
+
         return arrayList;
     }
 

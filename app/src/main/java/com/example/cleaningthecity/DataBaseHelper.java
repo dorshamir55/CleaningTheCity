@@ -52,6 +52,8 @@ class DatabaseHelper extends SQLiteOpenHelper {
                 db.delete(TABLE_NAME,COL_1 +"=?"+" and "+
                         COL_2+"=?",new String[]{String.valueOf(minScore),minName});
             }
+            else
+                return false;
 
         }
         ContentValues contentValues = new ContentValues();

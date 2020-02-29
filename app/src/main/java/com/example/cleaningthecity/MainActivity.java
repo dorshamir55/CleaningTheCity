@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     // Score
     private int score = 0;
 
+    //level
+    private int level = 1;
+
     //life
     private int life_count;
 
@@ -204,6 +207,13 @@ public class MainActivity extends AppCompatActivity {
             orangeX = -10;
             sound.playHitSound();
 
+            if(score>=200*level){
+                level++;
+                blackSpeed+=3;
+                orangeSpeed+=3;
+                pinkSpeed+=3;
+                // AsyncTask level up
+            }
         }
 
         // Pink
@@ -217,6 +227,13 @@ public class MainActivity extends AppCompatActivity {
             pinkX = -10;
             sound.playHitSound();
 
+            if(score>=200*level){
+                level++;
+                blackSpeed+=3;
+                orangeSpeed+=3;
+                pinkSpeed+=3;
+                // AsyncTask level up
+            }
         }
 
         // Black
@@ -227,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
                 boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
             lifes[life_count-1].setImageResource(R.drawable.heart_g);
             life_count--;
+            sound.playOverSound();
 
             blackX = -10;
 

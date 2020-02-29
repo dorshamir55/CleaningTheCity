@@ -34,18 +34,6 @@ public class ResultActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("PlayerName");
         int score = getIntent().getIntExtra("SCORE", 0);
         scoreLabel.setText(score + "");
-        arrayList= new ArrayList<>();
-        arrayList = db.getAllData();
-        /*int selected = db.getOldRecord();
-
-        if ((arrayList.size()<10) && (score>selected)){
-            //Delete old record
-            deleteOldRecord(String.valueOf(selected));
-        }
-        arrayList = db.getAllData();
-        if(arrayList.size()<10){
-            db.insertDataRecords(score,name);
-        }*/
 
         db.insertDataRecords(score,name);
 

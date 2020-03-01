@@ -72,10 +72,10 @@
             android:layout_gravity="center_vertical"/>
 
         <ImageView
-            android:id="@+id/orange"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/orange"/>
+            android:id="@+id/objects"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/object1"/>
 
         <ImageView
             android:id="@+id/black"
@@ -84,10 +84,16 @@
             android:src="@drawable/black"/>
 
         <ImageView
-            android:id="@+id/pink"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@drawable/pink"/>
+            android:id="@+id/objectBonus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/recyclebonus"/>
+
+        <ImageView
+            android:id="@+id/objectHeal"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/healkit"/>
 
     </FrameLayout>
 

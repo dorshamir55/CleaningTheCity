@@ -2,7 +2,6 @@ package com.example.cleaningthecity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.os.Handler;
 //import android.support.v7.app.AppCompatActivity;
@@ -17,6 +16,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,10 +27,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView scoreLabel;
     private TextView startLabel;
     private ImageView box;
-    private ImageView orange;
-    private ImageView pink;
+    private ImageView objects;
+    private ImageView bonusObject;
     private ImageView black;
-    private ImageView[] lifes = new ImageView[3];
+    private ImageView healKit;
+    private ImageView[] lifes;
+    private ArrayList<Integer> imgArr;
 
 
     // Size
@@ -39,23 +43,26 @@ public class MainActivity extends AppCompatActivity {
 
     // Position
     private int boxY;
-    private int orangeX;
-    private int orangeY;
-    private int pinkX;
-    private int pinkY;
+    private int objectsX;
+    private int objectsY;
+    private int bonusObjX;
+    private int bonusObjY;
     private int blackX;
     private int blackY;
+    private int healKitX;
+    private int healKitY;
 
     // Speed
     private int boxSpeed;
-    private int orangeSpeed;
-    private int pinkSpeed;
+    private int objectsSpeed;
+    private int bonusObjSpeed;
     private int blackSpeed;
+    private int healKitSpeed;
 
     // Score
     private int score = 0;
 
-    //level
+    //level**
     private int level = 1;
 
     //life
@@ -84,12 +91,20 @@ public class MainActivity extends AppCompatActivity {
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         startLabel = (TextView) findViewById(R.id.startLabel);
         box = (ImageView) findViewById(R.id.box);
-        orange = (ImageView) findViewById(R.id.orange);
-        pink = (ImageView) findViewById(R.id.pink);
+        objects = (ImageView) findViewById(R.id.objects);
+        bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
+        healKit = (ImageView) findViewById(R.id.objectHeal);
+
+        lifes = new ImageView[3];
         lifes[0] = (ImageView) findViewById(R.id.heart);
         lifes[1] = (ImageView) findViewById(R.id.heart2);
         lifes[2] = (ImageView) findViewById(R.id.heart3);
+        lifes[0].setTag(findViewById(R.id.heart));
+        lifes[1].setTag(findViewById(R.id.heart));
+        lifes[2].setTag(findViewById(R.id.heart));
+
+        getResourcesImages();
 
 
         // Get screen size.
@@ -106,23 +121,26 @@ public class MainActivity extends AppCompatActivity {
         // Speed Box:20 Orange:12 Pink:20 Black:16
 
         boxSpeed = Math.round(screenHeight / 60);  // 1280 / 60 = 21.333... => 21
-        orangeSpeed = Math.round(screenWidth / 60); // 768 / 60 = 12.8 => 13
-        pinkSpeed = Math.round(screenWidth / 36);   // 768 / 36 = 21.333... => 21
+        objectsSpeed = Math.round(screenWidth / 60); // 768 / 60 = 12.8 => 13
+        bonusObjSpeed = Math.round(screenWidth / 36);   // 768 / 36 = 21.333... => 21
         blackSpeed = Math.round(screenWidth / 45); // 768 / 45 = 17.06... => 17
+        healKitSpeed = Math.round(screenWidth / 36); // 768/30 =25.6..=>25
 
         //Log.v("SPEED_BOX", boxSpeed + "");
-        //Log.v("SPEED_ORANGE", orangeSpeed + "");
-        //Log.v("SPEED_PINK", pinkSpeed + "");
+        //Log.v("SPEED_ORANGE", objectsSpeed + "");
+        //Log.v("SPEED_PINK", bonusObjSpeed + "");
         //Log.v("SPEED_BLACK", blackSpeed + "");
 
 
         // Move to out of screen.
-        orange.setX(-80);
-        orange.setY(-80);
-        pink.setX(-80);
-        pink.setY(-80);
+        objects.setX(-80);
+        objects.setY(-80);
+        bonusObject.setX(-80);
+        bonusObject.setY(-80);
         black.setX(-80);
         black.setY(-80);
+        healKit.setX(-80);
+        healKit.setY(-80);
 
         //score label
         scoreLabel.setText(getString(R.string.game_score) + "0");
@@ -132,19 +150,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void getResourcesImages() {
+        imgArr = new ArrayList<>();
+        Field[] fields = R.drawable.class.getFields();
+        for(Field field : fields){
+            if (field.getName().startsWith("object"))
+            {
+                imgArr.add(getResources().getIdentifier(field.getName(), "drawable", getPackageName()));
+            }
+        }
+    }
+
 
     public void changePos() {
 
         hitCheck();
 
-        // Orange
-        orangeX -= orangeSpeed;
-        if (orangeX < 0) {
-            orangeX = screenWidth + 20;
-            orangeY = (int) Math.floor(Math.random() * (frameHeight - orange.getHeight()));
+        // normal objects
+        objectsX -= objectsSpeed;
+        if (objectsX < 0) {
+            Random rand = new Random();
+            objects.setImageResource(imgArr.get(rand.nextInt(imgArr.size())));
+
+            objectsX = screenWidth + 20;
+            objectsY = (int) Math.floor(Math.random() * (frameHeight - objects.getHeight()));
         }
-        orange.setX(orangeX);
-        orange.setY(orangeY);
+        objects.setX(objectsX);
+        objects.setY(objectsY);
 
 
         // Black
@@ -157,15 +189,24 @@ public class MainActivity extends AppCompatActivity {
         black.setY(blackY);
 
 
-        // Pink
-        pinkX -= pinkSpeed;
-        if (pinkX < 0) {
-            pinkX = screenWidth + 5000;
-            pinkY = (int) Math.floor(Math.random() * (frameHeight - pink.getHeight()));
+        // bonus recycle object
+        bonusObjX -= bonusObjSpeed;
+        if (bonusObjX < 0) { //score>500*level && life_count< 3
+            bonusObjX = screenWidth + 10000;//raise the number make it rare
+            bonusObjY = (int) Math.floor(Math.random() * (frameHeight - bonusObject.getHeight()));
         }
-        pink.setX(pinkX);
-        pink.setY(pinkY);
+        bonusObject.setX(bonusObjX);
+        bonusObject.setY(bonusObjY);
 
+        //Heal kit object
+        healKitX -= healKitSpeed;
+        if(life_count<3 && score>70*level && healKitX<0)
+        {
+            healKitX = screenWidth + 20000;
+            healKitY = (int) Math.floor(Math.random() * (frameHeight - healKit.getHeight()));
+        }
+        healKit.setX(healKitX);
+        healKit.setY(healKitY);
 
         // Move Box
         if (action_flg == true) {
@@ -180,11 +221,19 @@ public class MainActivity extends AppCompatActivity {
         // Check box position.
         if (boxY < 0) boxY = 0;
 
-        if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;
+        if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;//framgeheight-boxheight
 
         box.setY(boxY);
 
         scoreLabel.setText(getString(R.string.game_score) + score);
+
+        if(score>=200*level){
+                level++;
+                blackSpeed+=3;
+                objectsSpeed +=3;
+                bonusObjSpeed +=3;
+                // AsyncTask level up
+            }
 
     }
 
@@ -193,47 +242,55 @@ public class MainActivity extends AppCompatActivity {
 
         // If the center of the ball is in the box, it counts as a hit.
 
-        // Orange
-        int orangeCenterX = orangeX + orange.getWidth() / 2;
-        int orangeCenterY = orangeY + orange.getHeight() / 2;
+        // objects 10 points
+        int objectsCenterX = objectsX + objects.getWidth() / 2;
+        int objectsCenterY = objectsY + objects.getHeight() / 2;
 
-        // 0 <= orangeCenterX <= boxWidth
-        // boxY <= orangeCenterY <= boxY + boxHeight
+        // 0 <= objectsCenterX <= boxWidth
+        // boxY <= objectsCenterY <= boxY + boxHeight
 
-        if (0 <= orangeCenterX && orangeCenterX <= boxSize &&
-                boxY <= orangeCenterY && orangeCenterY <= boxY + boxSize) {
+        if (0 <= objectsCenterX && objectsCenterX <= boxSize &&
+                boxY <= objectsCenterY && objectsCenterY <= boxY + boxSize) {
 
             score += 10;
-            orangeX = -10;
+            objectsX = -10;
             sound.playHitSound();
 
-            if(score>=200*level){
-                level++;
-                blackSpeed+=3;
-                orangeSpeed+=3;
-                pinkSpeed+=3;
-                // AsyncTask level up
-            }
         }
 
-        // Pink
-        int pinkCenterX = pinkX + pink.getWidth() / 2;
-        int pinkCenterY = pinkY + pink.getHeight() / 2;
+        // bonus recycle object
+        int bonusObjCenterX = bonusObjX + bonusObject.getWidth() / 2;
+        int bonusObjCenterY = bonusObjY + bonusObject.getHeight() / 2;
 
-        if (0 <= pinkCenterX && pinkCenterX <= boxSize &&
-                boxY <= pinkCenterY && pinkCenterY <= boxY + boxSize) {
+        if (0 <= bonusObjCenterX && bonusObjCenterX <= boxSize &&
+                boxY <= bonusObjCenterY && bonusObjCenterY <= boxY + boxSize) {
 
             score += 30;
-            pinkX = -10;
+            bonusObjX = -10;
             sound.playHitSound();
 
-            if(score>=200*level){
-                level++;
-                blackSpeed+=3;
-                orangeSpeed+=3;
-                pinkSpeed+=3;
-                // AsyncTask level up
+        }
+
+        // heal kit object
+        int healKitCenterX = healKitX + healKit.getWidth() / 2;
+        int healKitCenterY = healKitY + healKit.getHeight() / 2;
+
+        if (0 <= healKitCenterX && healKitCenterX <= boxSize &&
+                boxY <= healKitCenterY && healKitCenterY <= boxY + boxSize) {
+            for(ImageView check:lifes)
+            {
+                if(check.getTag().equals(R.drawable.heart_g))
+                {
+                    check.setImageResource(R.drawable.heart);
+                    check.setTag(R.drawable.heart);//to avoid get into this condition again
+                    life_count++;
+                    break;
+                }
             }
+
+            healKitX = -10;
+            sound.playHitSound();
+
         }
 
         // Black
@@ -243,6 +300,7 @@ public class MainActivity extends AppCompatActivity {
         if (0 <= blackCenterX && blackCenterX <= boxSize &&
                 boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
             lifes[life_count-1].setImageResource(R.drawable.heart_g);
+            lifes[life_count-1].setTag(R.drawable.heart_g);
             life_count--;
             sound.playOverSound();
 
@@ -254,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
                 timer.cancel();
                 timer = null;
 
-                sound.playOverSound();
+                sound.playOverSound();//**
 
                 // Show Result
                 String name = getIntent().getStringExtra("PlayerName");
@@ -289,7 +347,8 @@ public class MainActivity extends AppCompatActivity {
 
             // The box is a square.(height and width are the same.)
             boxSize = box.getHeight();
-
+            //boxHeight = box.getHeight***
+            //boxWidth = box.getWidth***
 
             startLabel.setVisibility(View.GONE);
 

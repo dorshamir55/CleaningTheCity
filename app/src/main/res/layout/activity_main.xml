@@ -76,10 +76,10 @@
             android:layout_gravity="center_vertical"/>
 
         <ImageView
-            android:id="@+id/orange"
+            android:id="@+id/objects"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/orange"/>
+            android:src="@drawable/object1"/>
 
         <ImageView
             android:id="@+id/black"
@@ -88,10 +88,10 @@
             android:src="@drawable/black"/>
 
         <ImageView
-            android:id="@+id/pink"
+            android:id="@+id/objectBonus"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:src="@drawable/pink"/>
+            android:src="@drawable/recyclebonus"/>
 
     </FrameLayout>
 

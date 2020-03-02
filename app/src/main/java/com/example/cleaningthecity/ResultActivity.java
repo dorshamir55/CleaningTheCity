@@ -80,10 +80,12 @@ public class ResultActivity extends AppCompatActivity {
     public boolean dispatchKeyEvent(KeyEvent event) {
 
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-                    return true;
-            }
+            if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
+                return true;
+//            switch (event.getKeyCode()) {
+//                case KeyEvent.KEYCODE_BACK:
+//                    return true;
+//            }
         }
 
         return super.dispatchKeyEvent(event);

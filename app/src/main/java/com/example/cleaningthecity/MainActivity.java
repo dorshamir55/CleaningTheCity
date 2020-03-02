@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.AsyncTask;
+
 import android.os.Handler;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -17,9 +15,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
@@ -152,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         //score label
         scoreLabel.setText(getString(R.string.game_score) + "0");
-        levelLabel.setText(getString(R.string.level_1)+ "1");
+        levelLabel.setText(getString(R.string.level)+ "1");
 
         //life count
         life_count = 3;
@@ -218,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         healKit.setY(healKitY);
 
         // Move Box
-        if (action_flg == true) {
+        if (action_flg) {
             // Touching
             boxY -= boxSpeed;
 
@@ -241,15 +237,28 @@ public class MainActivity extends AppCompatActivity {
             blackSpeed+=3;
             objectsSpeed +=3;
             bonusObjSpeed +=3;
-            levelLabel.setText(getString(R.string.level_1)+ String.valueOf(level));
-            //
-            levelUpImage.setImageResource(R.drawable.level_up_animation);
-            AnimationDrawable levelUpAnimation = (AnimationDrawable) levelUpImage.getDrawable();
+            String test = getString(R.string.level)+ level;
+            levelLabel.setText(test);
+
+            //level up animation
+            levelUpImage.setBackgroundResource(R.drawable.level_up_animation);
+            AnimationDrawable levelUpAnimation = (AnimationDrawable) levelUpImage.getBackground();
+            levelUpImage.setVisibility(View.VISIBLE);
             levelUpAnimation.start();
+            //stop after 2000ms
+            timerDelayRemoveView(2000,levelUpImage);
+            levelUpAnimation.stop();
         }
     }
 
-
+    public void timerDelayRemoveView(long time, final ImageView v) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                v.setVisibility(View.GONE);
+            }
+        }, time);
+    }
     public void hitCheck() {
 
         // If the center of the ball is in the box, it counts as a hit.
@@ -345,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onTouchEvent(MotionEvent me) {
 
-        if (start_flg == false) {
+        if (!start_flg) {
 
             start_flg = true;
 
@@ -395,10 +404,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean dispatchKeyEvent(KeyEvent event) {
 
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-                    return true;
-            }
+            if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
+                return true;
+//            switch (event.getKeyCode()) {
+//                case KeyEvent.KEYCODE_BACK:
+//                    return true;
+//            }
         }
 
         return super.dispatchKeyEvent(event);

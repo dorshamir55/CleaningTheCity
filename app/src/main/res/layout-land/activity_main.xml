@@ -73,9 +73,9 @@
 
         <ImageView
             android:id="@+id/box"
-            android:layout_width="50dp"
+            android:layout_width="105dp"
             android:layout_height="50dp"
-            android:src="@drawable/box"
+            android:src="@drawable/garbage"
             android:layout_gravity="center_vertical"/>
 
         <ImageView

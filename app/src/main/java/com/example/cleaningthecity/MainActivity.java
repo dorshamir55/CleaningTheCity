@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView[] lifes;
     private ImageView levelUpImage;
     private ArrayList<Integer> imgArr;
-
+    private  AnimationDrawable levelUpAnimation;
 
     // Size
     private int frameHeight;
@@ -242,12 +242,12 @@ public class MainActivity extends AppCompatActivity {
 
             //level up animation
             levelUpImage.setBackgroundResource(R.drawable.level_up_animation);
-            AnimationDrawable levelUpAnimation = (AnimationDrawable) levelUpImage.getBackground();
+            levelUpAnimation = (AnimationDrawable) levelUpImage.getBackground();
             levelUpImage.setVisibility(View.VISIBLE);
             levelUpAnimation.start();
             //stop after 2000ms
             timerDelayRemoveView(2000,levelUpImage);
-            levelUpAnimation.stop();
+
         }
     }
 
@@ -255,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                levelUpAnimation.stop();
                 v.setVisibility(View.GONE);
             }
         }, time);

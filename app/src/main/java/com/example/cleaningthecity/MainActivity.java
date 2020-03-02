@@ -3,6 +3,8 @@ package com.example.cleaningthecity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.AsyncTask;
 import android.os.Handler;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +17,9 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
@@ -26,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView scoreLabel;
     private TextView startLabel;
+    private TextView levelLabel;
     private ImageView box;
     private ImageView objects;
     private ImageView bonusObject;
     private ImageView black;
     private ImageView healKit;
     private ImageView[] lifes;
+    private ImageView levelUpImage;
     private ArrayList<Integer> imgArr;
 
 
@@ -90,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         startLabel = (TextView) findViewById(R.id.startLabel);
+        levelLabel = (TextView) findViewById(R.id.levelLabel);
+        levelUpImage = (ImageView) findViewById(R.id.levelUpImage);
         box = (ImageView) findViewById(R.id.box);
         objects = (ImageView) findViewById(R.id.objects);
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
@@ -144,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         //score label
         scoreLabel.setText(getString(R.string.game_score) + "0");
+        levelLabel.setText(getString(R.string.level_1)+ "1");
 
         //life count
         life_count = 3;
@@ -227,14 +236,17 @@ public class MainActivity extends AppCompatActivity {
 
         scoreLabel.setText(getString(R.string.game_score) + score);
 
-        if(score>=200*level){
-                level++;
-                blackSpeed+=3;
-                objectsSpeed +=3;
-                bonusObjSpeed +=3;
-                // AsyncTask level up
-            }
-
+        if(score>=50*level){
+            level++;
+            blackSpeed+=3;
+            objectsSpeed +=3;
+            bonusObjSpeed +=3;
+            levelLabel.setText(getString(R.string.level_1)+ String.valueOf(level));
+            //
+            levelUpImage.setImageResource(R.drawable.level_up_animation);
+            AnimationDrawable levelUpAnimation = (AnimationDrawable) levelUpImage.getDrawable();
+            levelUpAnimation.start();
+        }
     }
 
 
@@ -391,6 +403,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.dispatchKeyEvent(event);
     }
-
 
 }

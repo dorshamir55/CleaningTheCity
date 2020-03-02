@@ -16,4 +16,5 @@
     <string name="tap_to_start">Tap to Start</string>
     <string name="pb_Status">High Score Table Loaded</string>
     <string name="back_menu">Back menu</string>
+    <string name="level_up">"level "</string>
 </resources>

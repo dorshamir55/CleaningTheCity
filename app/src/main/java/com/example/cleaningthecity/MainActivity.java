@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView[] lifes;
     private ImageView levelUpImage;
     private ArrayList<Integer> imgArr;
-    private  AnimationDrawable levelUpAnimation;
+    private AnimationDrawable levelUpAnimation;
 
     // Size
     private int frameHeight;

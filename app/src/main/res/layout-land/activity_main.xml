@@ -75,7 +75,7 @@
             android:id="@+id/box"
             android:layout_width="105dp"
             android:layout_height="50dp"
-            android:src="@drawable/garbage"
+            android:src="@drawable/truck1"
             android:layout_gravity="center_vertical"/>
 
         <ImageView

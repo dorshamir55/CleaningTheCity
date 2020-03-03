@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView scoreLabel;
     private TextView startLabel;
     private TextView levelLabel;
-    private ImageView box;
+    private ImageView garbageTruckImage;
     private ImageView objects;
     private ImageView bonusObject;
     private ImageView black;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView levelUpImage;
     private ArrayList<Integer> imgArr;
     private AnimationDrawable levelUpAnimation;
+    private AnimationDrawable garbageTruckAnimation;
 
     // Size
     private int frameHeight;
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         startLabel = (TextView) findViewById(R.id.startLabel);
         levelLabel = (TextView) findViewById(R.id.levelLabel);
         levelUpImage = (ImageView) findViewById(R.id.levelUpImage);
-        box = (ImageView) findViewById(R.id.box);
+        garbageTruckImage = (ImageView) findViewById(R.id.garbageTruckImage);
         objects = (ImageView) findViewById(R.id.objects);
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         lifes[2].setTag(findViewById(R.id.heart));
 
         getResourcesImages();
-
 
         // Get screen size.
         WindowManager wm = getWindowManager();
@@ -153,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
         //life count
         life_count = 3;
 
+        garbageTruckImage.setBackgroundResource(R.drawable.garbage_truck_animation);
+        garbageTruckAnimation = (AnimationDrawable) garbageTruckImage.getBackground();
+        garbageTruckImage.setVisibility(View.VISIBLE);
+        garbageTruckAnimation.start();
     }
 
     private void getResourcesImages() {
@@ -228,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;//framgeheight-boxheight
 
-        box.setY(boxY);
+        garbageTruckImage.setY(boxY);
 
         scoreLabel.setText(getString(R.string.game_score) + score);
 
@@ -365,10 +368,10 @@ public class MainActivity extends AppCompatActivity {
             FrameLayout frame = (FrameLayout) findViewById(R.id.frame);
             frameHeight = frame.getHeight();
 
-            boxY = (int)box.getY();
+            boxY = (int)garbageTruckImage.getY();
 
             // The box is a square.(height and width are the same.)
-            boxSize = box.getHeight();
+            boxSize = garbageTruckImage.getHeight();
             //boxHeight = box.getHeight***
             //boxWidth = box.getWidth***
 

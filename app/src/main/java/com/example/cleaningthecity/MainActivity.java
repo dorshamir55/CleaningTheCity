@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
         garbageTruckImage.setBackgroundResource(R.drawable.garbage_truck_animation);
         garbageTruckAnimation = (AnimationDrawable) garbageTruckImage.getBackground();
         garbageTruckImage.setVisibility(View.VISIBLE);
-        garbageTruckAnimation.start();
     }
 
     private void getResourcesImages() {
@@ -357,6 +356,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onTouchEvent(MotionEvent me) {
+        garbageTruckAnimation.start();
 
         if (!start_flg) {
 

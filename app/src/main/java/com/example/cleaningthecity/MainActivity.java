@@ -34,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView healKit;
     private ImageView[] lifes;
     private ImageView levelUpImage;
+    private ImageView roadImage;
     private ArrayList<Integer> imgArr;
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
+    private AnimationDrawable roadAnimation;
 
     // Size
     private int frameHeight;
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         levelLabel = (TextView) findViewById(R.id.levelLabel);
         levelUpImage = (ImageView) findViewById(R.id.levelUpImage);
         garbageTruckImage = (ImageView) findViewById(R.id.garbageTruckImage);
+        roadImage = (ImageView) findViewById(R.id.roadImage);
         objects = (ImageView) findViewById(R.id.objects);
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
@@ -151,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
 
         //life count
         life_count = 3;
+
+        roadImage.setBackgroundResource(R.drawable.road_animation);
+        roadAnimation = (AnimationDrawable) roadImage.getBackground();
+        roadImage.setVisibility(View.VISIBLE);
 
         garbageTruckImage.setBackgroundResource(R.drawable.garbage_truck_animation);
         garbageTruckAnimation = (AnimationDrawable) garbageTruckImage.getBackground();
@@ -356,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onTouchEvent(MotionEvent me) {
+        roadAnimation.start();
         garbageTruckAnimation.start();
 
         if (!start_flg) {

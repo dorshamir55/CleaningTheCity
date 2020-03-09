@@ -22,4 +22,8 @@
     <string name="game_instructions_title">Game Instructions</string>
     <string name="instructions_btn">Instructions</string>
     <string name="intro_txt">Hey!, we need your help to clean the city before we lose her</string>
+    <string name="instruction_points10">10 point</string>
+    <string name="instruction_points30">30 point</string>
+    <string name="instruction_healkit">Heal kit</string>
+    <string name="instructions_badhit">Harm HP</string>
 </resources>

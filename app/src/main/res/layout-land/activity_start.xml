@@ -8,79 +8,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:text="@string/game_name"
-        android:layout_marginTop="20dp"
-        android:textSize="32sp"/>
+        android:textSize="32sp"
+        />
 
-    <TableLayout
+    <TextView
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:gravity="center"
+       android:text="@string/intro_txt"
+       android:padding="20dp"/>
+
+    <Button
+        android:id="@+id/btn_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <TableRow
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/pink"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="30 point"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/orange"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10 point"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/black"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Game Over"
-                android:textSize="18sp"
-                android:paddingLeft="10dp"/>
-        </TableRow>
-
-    </TableLayout>
+        android:onClick="showInstructions"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/instructions_btn" />
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_gravity="center"
+        android:padding="5dp"
+        >
 
         <Button
             android:id="@+id/btn_records"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/records_table"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginEnd="20dp"/>
 
         <EditText
             android:id="@+id/editText_name"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:hint="@string/player_name"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:inputType="text"/><!--//one line only-->
 
         <Button

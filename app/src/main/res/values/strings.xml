@@ -17,4 +17,9 @@
     <string name="pb_Status">High Score Table Loaded</string>
     <string name="back_menu">Back menu</string>
     <string name="level_up">"level "</string>
+    <string name="instructions_window">Instructions</string>
+    <string name="game_instructions">Collect all the garbage from the city and avoid the bad object</string>
+    <string name="game_instructions_title">Game Instructions</string>
+    <string name="instructions_btn">Instructions</string>
+    <string name="intro_txt">Hey!, we need your help to clean the city before we lose her</string>
 </resources>

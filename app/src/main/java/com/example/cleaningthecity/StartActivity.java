@@ -1,35 +1,34 @@
 package com.example.cleaningthecity;
 
+import android.app.Dialog;
 import android.content.Intent;
-//import android.support.v7.app.AppCompatActivity;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-//
-//import com.google.android.gms.ads.AdListener;
-//import com.google.android.gms.ads.AdRequest;
-//import com.google.android.gms.ads.InterstitialAd;
+
 
 public class StartActivity extends AppCompatActivity {
 
     private Button startButton;
     private EditText nameEditText;
     private Button recordsButton;
-    //private InterstitialAd interstitial;
+    private TextView closeInstruction;
+    private Dialog instructionsDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         startButton = (Button)(findViewById(R.id.btn_start));
         recordsButton = (Button)(findViewById(R.id.btn_records));
         nameEditText = (EditText)(findViewById(R.id.editText_name));
+        instructionsDialog = new Dialog(this);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +48,21 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
+    public void showInstructions(View view)
+    {
+        instructionsDialog.setContentView(R.layout.game_instructions);
+        closeInstruction = (TextView) (instructionsDialog.findViewById(R.id.txt_close));
+        closeInstruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                instructionsDialog.dismiss();
+            }
+        });
+        instructionsDialog.show();
+    }
 
     public void startGame() {
         //startActivity(new Intent(getApplicationContext(), MainActivity.class));

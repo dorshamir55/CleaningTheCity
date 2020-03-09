@@ -3,22 +3,19 @@ package com.example.cleaningthecity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
+
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.Cursor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
-    ArrayList<Player> arrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

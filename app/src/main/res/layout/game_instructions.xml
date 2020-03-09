@@ -88,10 +88,10 @@
             android:gravity="center_vertical">
             <ImageView
                 android:contentDescription="bonus object hit"
-                android:layout_width="20dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:src="@drawable/recyclebonus"
-                android:layout_weight="20"/>
+                android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
             android:gravity="center_vertical">
 
             <ImageView
-                android:layout_width="93dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:contentDescription="heal kit"
@@ -131,7 +131,7 @@
             android:gravity="center_vertical">
             <ImageView
                 android:contentDescription="bad object hit"
-                android:layout_width="20dp"
+                android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:src="@drawable/black"
                 android:layout_weight="1"/>

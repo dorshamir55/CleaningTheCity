@@ -40,58 +40,111 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center">
 
-        <TableRow
-            android:gravity="center_vertical">
+        <LinearLayout android:gravity="center_vertical">
+
             <ImageView
-                android:contentDescription="objects Hit"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/pink"/>
+                android:contentDescription="objects Hit"
+                android:src="@drawable/object1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="objects Hit"
+                android:src="@drawable/object2" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="objects Hit"
+                android:src="@drawable/object3" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="objects Hit"
+                android:src="@drawable/object4" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="objects Hit"
+                android:src="@drawable/object5" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="30 point"
-                android:textColor="@color/white"
-                android:textSize="14sp"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp"/>
-        </TableRow>
+                android:paddingEnd="10dp"
+                android:text="10 point"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
             android:layout_marginTop="20dp"
             android:gravity="center_vertical">
             <ImageView
                 android:contentDescription="bonus object hit"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/orange"/>
+                android:src="@drawable/recyclebonus"
+                android:layout_weight="20"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 point"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="30 point"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"/>
-        </TableRow>
+/>
+        </LinearLayout>
 
-        <TableRow
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="93dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:contentDescription="heal kit"
+                android:src="@drawable/healkit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Heal kit"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_marginTop="20dp"
             android:gravity="center_vertical">
             <ImageView
                 android:contentDescription="bad object hit"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/black"/>
+                android:src="@drawable/black"
+                android:layout_weight="1"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Game Over"
+                android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"/>
-        </TableRow>
+                />
+        </LinearLayout>
 
     </TableLayout>
 

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,6 +57,26 @@ public class ResultActivity extends AppCompatActivity {
             highScoreLabel.setText(getString(R.string.high_score) + highScore);
 
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.share) {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.titleShare));
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, scoreLabel.getText().toString());
+            startActivity(Intent.createChooser(sharingIntent,getString(R.string.share)));
+        }
+
+        return true;
 
     }
 

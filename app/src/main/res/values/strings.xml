@@ -29,4 +29,6 @@
     <string name="win_game">Congratulations!</string>
     <string name="text_win">You succseded to clear the city, all the residents appreciate your help</string>
     <string name="text_lose">The residents appreciate your help but there is still lot of work to do, try again</string>
+    <string name="share">Share Result</string>
+    <string name="titleShare">Hey watch my result from Cleaning The City  Quizz APP</string>
 </resources>

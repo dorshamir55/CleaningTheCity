@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -15,23 +16,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
+    private TextView scoreLabel;
+    private TextView highScoreLabel;
+    private TextView endGame;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         db = new DatabaseHelper(this);
 
-        TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
-        TextView highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
+        scoreLabel = (TextView) findViewById(R.id.scoreLabel);
+        highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
+        endGame = (TextView) findViewById(R.id.endGame);
+
 
         String name = getIntent().getStringExtra("PlayerName");
         int score = getIntent().getIntExtra("SCORE", 0);
+        int level = getIntent().getIntExtra("Level",1);
         scoreLabel.setText(score + "");
-
+        checkResults(level);
         db.insertDataRecords(score,name);
 
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
@@ -50,6 +56,22 @@ public class ResultActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    private void checkResults(int level) {
+        LinearLayout myLayout = (LinearLayout) findViewById(R.id.my_layout);
+        TextView endText = (TextView) findViewById(R.id.endGameText);
+        if(level==11)
+        {
+            endGame.setText(getString(R.string.win_game));
+            endText.setText(getString(R.string.text_win));
+            myLayout.setBackgroundResource(R.drawable.winbg);
+        }
+        else{
+            endGame.setText(getString(R.string.game_over));
+            endText.setText(getString(R.string.text_lose));
+            myLayout.setBackgroundResource(R.drawable.losebg);
+        }
     }
 
     public void backMenu(View view) {

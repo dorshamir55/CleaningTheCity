@@ -3,22 +3,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:id="@+id/my_layout">
 
     <TextView
+        android:id="@+id/endGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_over"
         android:layout_marginTop="30dp"
         android:textSize="30sp"/>
-
+    <TextView
+        android:id="@+id/endGameText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        />
     <TextView
         android:id="@+id/scoreLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="150"
         android:textSize="40sp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/highScoreLabel"
@@ -26,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/high_score"
         android:textSize="20sp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

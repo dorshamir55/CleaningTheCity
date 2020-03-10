@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
@@ -23,7 +24,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-
+    private TableRow levelBackGround;
     private TextView scoreLabel;
     private TextView startLabel;
     private TextView levelLabel;
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
         healKit = (ImageView) findViewById(R.id.objectHeal);
+        levelBackGround = (TableRow) findViewById(R.id.tableBackGround);
 
         lifes = new ImageView[3];
         lifes[0] = (ImageView) findViewById(R.id.heart);
@@ -243,11 +245,24 @@ public class MainActivity extends AppCompatActivity {
 
         if(score>=50*level){
             level++;
-            blackSpeed+=3;
-            objectsSpeed +=3;
-            bonusObjSpeed +=3;
-            String test = getString(R.string.level)+ level;
-            levelLabel.setText(test);
+            blackSpeed+=1;
+            objectsSpeed +=1;
+            bonusObjSpeed +=1;
+            String setLevel = getString(R.string.level)+ level;
+            levelLabel.setText(setLevel);
+            switch (level){
+                case(5):
+                    onPause();
+                    levelBackGround.setBackgroundResource(R.drawable.level5);
+                    break;
+                case (10):
+                    levelBackGround.setBackgroundResource(R.drawable.level10);
+                case (11):
+                    endGame();
+                default:
+                    break;
+            }
+
 
             //level up animation
             levelUpImage.setBackgroundResource(R.drawable.level_up_animation);
@@ -264,10 +279,11 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                levelUpAnimation.stop();
+                //levelUpAnimation.stop();
                 v.setVisibility(View.GONE);
             }
         }, time);
+
     }
     public void hitCheck() {
 
@@ -339,20 +355,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(life_count==0)
             {
-                // Stop Timer!!
-                timer.cancel();
-                timer = null;
-
-                sound.playOverSound();//**
-
-                // Show Result
-                String name = getIntent().getStringExtra("PlayerName");
-                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                Bundle extras = new Bundle();
-                extras.putInt("SCORE", score);
-                extras.putString("PlayerName",name);
-                intent.putExtras(extras);
-                startActivity(intent);
+                endGame();
             }
 
         }
@@ -360,6 +363,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void endGame(){
+        String playerLevel = levelLabel.getText().toString();
+        // Stop Timer!!
+        timer.cancel();
+        timer = null;
+
+//        if(life_count==0)
+//        {
+//            levelUpImage.setBackgroundResource(R.drawable.gameover);
+//            levelUpImage.setVisibility(View.VISIBLE);
+//
+//            //game over
+//        }
+//        else  { //level 11 - finish the game
+//            levelUpImage.setBackgroundResource(R.drawable.finishgame);
+//            levelUpImage.setVisibility(View.VISIBLE);
+//        }
+//        timerDelayRemoveView(5000,levelUpImage);
+
+        // Show Result
+        String name = getIntent().getStringExtra("PlayerName");
+        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+        Bundle extras = new Bundle();
+        extras.putInt("SCORE", score);
+        extras.putString("PlayerName",name);
+        extras.putInt("Level",level);
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
+
 
 
     public boolean onTouchEvent(MotionEvent me) {

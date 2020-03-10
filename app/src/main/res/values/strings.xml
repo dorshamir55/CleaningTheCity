@@ -26,4 +26,7 @@
     <string name="instruction_points30">30 points</string>
     <string name="instruction_healkit">Heal kit</string>
     <string name="instructions_badhit">Harm</string>
+    <string name="win_game">Congratulations!</string>
+    <string name="text_win">You succseded to clear the city, all the residents appreciate your help</string>
+    <string name="text_lose">The residents appreciate your help but there is still lot of work to do, try again</string>
 </resources>

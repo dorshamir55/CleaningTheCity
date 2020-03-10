@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Score
     private int score = 0;
+    private final int pointsPerLevel=100;
 
     //level**
     private int level = 1;
@@ -243,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
         scoreLabel.setText(getString(R.string.game_score) + score);
 
-        if(score>=50*level){
+        if(score>=pointsPerLevel*level){
             level++;
             blackSpeed+=1;
             objectsSpeed +=1;
@@ -251,14 +252,16 @@ public class MainActivity extends AppCompatActivity {
             String setLevel = getString(R.string.level)+ level;
             levelLabel.setText(setLevel);
             switch (level){
-                case(5):
-                    onPause();
+                case (5):
+                    //onPause();
                     levelBackGround.setBackgroundResource(R.drawable.level5);
                     break;
                 case (10):
                     levelBackGround.setBackgroundResource(R.drawable.level10);
+                    break;
                 case (11):
                     endGame();
+                    break;
                 default:
                     break;
             }
@@ -387,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("PlayerName");
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         Bundle extras = new Bundle();
+        score = level==11?10*pointsPerLevel:score;
         extras.putInt("SCORE", score);
         extras.putString("PlayerName",name);
         extras.putInt("Level",level);

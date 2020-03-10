@@ -40,6 +40,7 @@ public class ResultActivity extends AppCompatActivity {
         int level = getIntent().getIntExtra("Level",1);
         scoreLabel.setText(score + "");
         checkResults(level);
+
         db.insertDataRecords(score,name);
 
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);

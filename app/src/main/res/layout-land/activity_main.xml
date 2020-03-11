@@ -7,7 +7,7 @@
         android:id="@+id/tableBackGround"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@drawable/level1"
+        android:background="@drawable/firstlevel"
         android:layout_marginTop="15dp" >
 
         <TextView

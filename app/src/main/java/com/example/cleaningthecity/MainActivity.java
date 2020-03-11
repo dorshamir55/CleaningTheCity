@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     //level**
     private int level = 1;
+    private final int maxLevel = 11;
 
     //life
     private int life_count;
@@ -252,14 +254,13 @@ public class MainActivity extends AppCompatActivity {
             String setLevel = getString(R.string.level)+ level;
             levelLabel.setText(setLevel);
             switch (level){
-                case (5):
-                    //onPause();
-                    levelBackGround.setBackgroundResource(R.drawable.level5);
+                case ((maxLevel-1)/2):
+                    levelBackGround.setBackgroundResource(R.drawable.midlevel);
                     break;
-                case (10):
-                    levelBackGround.setBackgroundResource(R.drawable.level10);
+                case (maxLevel-1):
+                    levelBackGround.setBackgroundResource(R.drawable.maxlevel);
                     break;
-                case (11):
+                case (maxLevel):
                     endGame();
                     break;
                 default:
@@ -268,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             //level up animation
-            levelUpImage.setBackgroundResource(R.drawable.level_up_animation);
+            levelUpImage.setBackgroundResource(checkLang()?R.drawable.level_up_animation:R.drawable.level_up_animation2);
             levelUpAnimation = (AnimationDrawable) levelUpImage.getBackground();
             levelUpImage.setVisibility(View.VISIBLE);
             levelUpAnimation.start();
@@ -276,6 +277,14 @@ public class MainActivity extends AppCompatActivity {
             timerDelayRemoveView(2000,levelUpImage);
 
         }
+    }
+
+    public boolean checkLang() {
+        if (Locale.getDefault().getLanguage().equals(new Locale("en").getLanguage())) //if the code lang will change
+        {
+            return true;//lang = enlish
+        }
+        return false; //lang = iw - hebrew
     }
 
     public void timerDelayRemoveView(long time, final ImageView v) {
@@ -368,28 +377,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void endGame(){
         String playerLevel = levelLabel.getText().toString();
-        // Stop Timer!!
+        // Stop Timer
         timer.cancel();
         timer = null;
-
-//        if(life_count==0)
-//        {
-//            levelUpImage.setBackgroundResource(R.drawable.gameover);
-//            levelUpImage.setVisibility(View.VISIBLE);
-//
-//            //game over
-//        }
-//        else  { //level 11 - finish the game
-//            levelUpImage.setBackgroundResource(R.drawable.finishgame);
-//            levelUpImage.setVisibility(View.VISIBLE);
-//        }
-//        timerDelayRemoveView(5000,levelUpImage);
 
         // Show Result
         String name = getIntent().getStringExtra("PlayerName");
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         Bundle extras = new Bundle();
-        score = level==11?10*pointsPerLevel:score;
+        score = level==maxLevel?(maxLevel-1)*pointsPerLevel:score;
         extras.putInt("SCORE", score);
         extras.putString("PlayerName",name);
         extras.putInt("Level",level);

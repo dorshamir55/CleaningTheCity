@@ -318,7 +318,6 @@ public class MainActivity extends AppCompatActivity {
             score += 30;
             bonusObjX = -10;
             sound.playHitSound();
-
         }
 
         // heal kit object

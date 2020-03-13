@@ -25,6 +25,11 @@ public class MusicButton extends AppCompatButton {
         player= new SoundPlayer(context);
     }
 
+    public void destroySound()
+    {
+        player.playGameSound(false);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 

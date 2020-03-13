@@ -384,8 +384,8 @@ public class MainActivity extends AppCompatActivity {
         timer = null;
 
         // Show Result
-        sound.destroy();
         String name = getIntent().getStringExtra("PlayerName");
+        musicButton.destroySound();
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         Bundle extras = new Bundle();
         score = level==maxLevel?(maxLevel-1)*pointsPerLevel:score;

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/startbg">
 
     <TextView
@@ -11,9 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:layout_marginTop="10dp"
         android:text="@string/game_name"
         android:textSize="32sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/lightBlue"/>
 
     <TextView
        android:layout_width="300dp"
@@ -21,13 +21,14 @@
        android:layout_gravity="center"
        android:gravity="center"
        android:text="@string/intro_txt"
-        android:textColor="@color/black"
+       android:textColor="@color/lightBlue"
        android:padding="20dp"/>
 
     <Button
         android:id="@+id/btn_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_shape"
         android:onClick="showInstructions"
         android:layout_gravity="center"
         android:gravity="center"
@@ -44,9 +45,9 @@
             android:id="@+id/btn_records"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:foreground="@drawable/leaderscore"
-            android:layout_marginEnd="20dp"/>
-        <!--//android:text="@string/game_score"-->
+            android:background="@drawable/btn_shape"
+            android:layout_marginEnd="20dp"
+            android:text="@string/records_table"/>
 
         <EditText
             android:id="@+id/editText_name"
@@ -54,12 +55,14 @@
             android:layout_height="wrap_content"
             android:hint="@string/player_name"
             android:layout_marginEnd="20dp"
+            android:background="@color/lightBlue"
             android:inputType="text"/><!--//one line only-->
 
         <Button
             android:id="@+id/btn_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_shape"
             android:text="@string/start_game" />
 
     </TableRow>

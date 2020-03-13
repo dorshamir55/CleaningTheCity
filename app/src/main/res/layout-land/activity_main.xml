@@ -63,7 +63,7 @@
             android:layout_height="40dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:background="@drawable/music"
+            android:background="@drawable/musicoff"
             android:gravity="center"
             android:hint="@string/music_on_off" />
     </TableRow>

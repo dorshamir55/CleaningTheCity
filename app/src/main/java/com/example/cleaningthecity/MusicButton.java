@@ -29,7 +29,8 @@ public class MusicButton extends AppCompatButton {
 
     public void destroySound()
     {
-        mediaPlayer.stop();
+        mediaPlayer.release();
+        mediaPlayer = null;
     }
 
     @Override

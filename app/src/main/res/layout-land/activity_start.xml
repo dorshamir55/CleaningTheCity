@@ -31,7 +31,7 @@
         android:onClick="showInstructions"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="@string/instructions_btn" />
+        android:text="@string/instructions_btn"/>
 
     <TableRow
         android:layout_width="wrap_content"

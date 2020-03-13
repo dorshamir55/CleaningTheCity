@@ -20,6 +20,7 @@ public class StartActivity extends AppCompatActivity {
     private TextView closeInstruction;
     private Dialog instructionsDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

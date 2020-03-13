@@ -65,9 +65,5 @@ public class SoundPlayer {
         }
     }
 
-    public void destroy(){
-        soundPool.release();
-        soundPool=null;
-    }
 }
 

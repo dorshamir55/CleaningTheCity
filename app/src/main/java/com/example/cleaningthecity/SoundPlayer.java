@@ -5,16 +5,17 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
-import android.util.Log;
 
 public class SoundPlayer {
 
     private AudioAttributes audioAttributes;
-    final int SOUND_POOL_MAX = 2;
+    private  int streamID =0;
+    final int SOUND_POOL_MAX = 3;
 
     private static SoundPool soundPool;
     private static int hitSound;
     private static int overSound;
+    private static int gameSound;
 
     public SoundPlayer(Context context) {
 
@@ -39,7 +40,7 @@ public class SoundPlayer {
 
         hitSound = soundPool.load(context, R.raw.hit, 1);
         overSound = soundPool.load(context, R.raw.over, 1);
-
+        gameSound = soundPool.load(context, R.raw.gamesound, 1);
     }
 
     public void playHitSound() {
@@ -51,5 +52,19 @@ public class SoundPlayer {
     public void playOverSound() {
         soundPool.play(overSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
+    public void playGameSound(boolean play)
+    {
+
+        if(play){
+
+            streamID = soundPool.play(gameSound, 1.0f, 1.0f, 1, -1, 1.0f);
+        }
+        else
+        {
+            soundPool.stop(streamID);
+        }
+    }
+
 
 }
+

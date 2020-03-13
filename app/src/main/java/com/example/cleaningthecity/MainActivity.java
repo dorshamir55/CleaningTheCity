@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
     private AnimationDrawable roadAnimation;
+    private MusicButton musicButton;
 
     // Size
     private int frameHeight;
@@ -89,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         sound = new SoundPlayer(this);
-
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         startLabel = (TextView) findViewById(R.id.startLabel);
         levelLabel = (TextView) findViewById(R.id.levelLabel);
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         black = (ImageView) findViewById(R.id.black);
         healKit = (ImageView) findViewById(R.id.objectHeal);
         levelBackGround = (TableRow) findViewById(R.id.tableBackGround);
+        musicButton = (MusicButton) findViewById(R.id.music_btn);
 
         lifes = new ImageView[3];
         lifes[0] = (ImageView) findViewById(R.id.heart);
@@ -392,7 +394,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtras(extras);
         startActivity(intent);
     }
-
 
 
     public boolean onTouchEvent(MotionEvent me) {

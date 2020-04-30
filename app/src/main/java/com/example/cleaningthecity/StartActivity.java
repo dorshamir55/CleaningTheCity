@@ -29,22 +29,6 @@ public class StartActivity extends AppCompatActivity {
         recordsButton = (Button)(findViewById(R.id.btn_records));
         nameEditText = (EditText)(findViewById(R.id.editText_name));
         instructionsDialog = new Dialog(this);
-
-//        startButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
-//        recordsButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(StartActivity.this, RecordsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
     }
 
     public void checkInput(View view) {

@@ -73,6 +73,7 @@ public class MusicButton extends AppCompatButton {
         return true;
     }
     private void touchAlert() {
+        // show toast msg when user clicked the music button
         String msg = getResources().getString(R.string.sound_click);
         Toast.makeText(getContext(), msg , Toast.LENGTH_SHORT).show();
     }

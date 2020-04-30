@@ -28,20 +28,21 @@ public class RecordsActivity extends AppCompatActivity {
         new LoaderAsyncTask(this).execute(10);
         databaseHelper = new DatabaseHelper(this);
         arrayList= new ArrayList<>();
-
     }
 
     private void loadDataInListView() {
+        // load data from sqlite
         arrayList = databaseHelper.getAllData();
         myAdapter = new MyAdapter(this,arrayList);
         listView.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
     }
+
     public static class LoaderAsyncTask extends AsyncTask<Integer, Integer, String> {
         private WeakReference<RecordsActivity> activityWeakReference;
 
         LoaderAsyncTask(RecordsActivity activity) {
-            activityWeakReference = new WeakReference<RecordsActivity>(activity);
+            activityWeakReference = new WeakReference<>(activity);
         }
 
         @Override
@@ -57,6 +58,7 @@ public class RecordsActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... integers) {
+            // loading bar
             for (int i = 0; i <= integers[0]; i++) {
                 publishProgress(i * 100 / integers[0]);
                 try {
@@ -65,14 +67,13 @@ public class RecordsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
             RecordsActivity activity = activityWeakReference.get();
             return activity.getString(R.string.pb_Status);
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            //super.onProgressUpdate(values);
-
             RecordsActivity activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing()) {
                 return;
@@ -82,15 +83,15 @@ public class RecordsActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
+        protected void onPostExecute(String statusMsg) {
+            super.onPostExecute(statusMsg);
             RecordsActivity activity = activityWeakReference.get();
+
             if (activity == null || activity.isFinishing()) {
                 return;
             }
 
-            Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, statusMsg, Toast.LENGTH_SHORT).show();
             activity.progressBar.setProgress(0);
             activity.progressBar.setVisibility(View.INVISIBLE);
             activity.loadDataInListView();

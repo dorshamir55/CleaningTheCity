@@ -23,7 +23,6 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         startButton = (Button)(findViewById(R.id.btn_start));
@@ -31,29 +30,46 @@ public class StartActivity extends AppCompatActivity {
         nameEditText = (EditText)(findViewById(R.id.editText_name));
         instructionsDialog = new Dialog(this);
 
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (nameEditText.getText().toString().trim().length()==0) { //trim=remove spaces to avoid blank name
-                    nameEditText.setError(getString(R.string.check_enter_name));
-                } else {
-                    startGame();
-                }
-            }
-        });
+//        startButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-        recordsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, RecordsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        recordsButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(StartActivity.this, RecordsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
-    public void showInstructions(View view)
-    {
+    public void checkInput(View view) {
+        if (nameEditText.getText().toString().trim().length()==0) {
+            //trim=remove spaces to avoid blank name
+            nameEditText.setError(getString(R.string.check_enter_name));
+        } else {
+            startGame();
+        }
+    }
+
+    public void startGame() {
+        Intent intent = new Intent(StartActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("PlayerName", nameEditText.getText().toString());
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
+
+    public void showRecords(View view){
+        Intent intent = new Intent(StartActivity.this, RecordsActivity.class);
+        startActivity(intent);
+    }
+
+    public void showInstructions(View view) {
         instructionsDialog.setContentView(R.layout.game_instructions);
         closeInstruction = (TextView) (instructionsDialog.findViewById(R.id.txt_close));
         closeInstruction.setOnClickListener(new View.OnClickListener() {
@@ -65,26 +81,13 @@ public class StartActivity extends AppCompatActivity {
         instructionsDialog.show();
     }
 
-    public void startGame() {
-        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-        Intent intent = new Intent(StartActivity.this, MainActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("PlayerName", nameEditText.getText().toString());
-        intent.putExtras(extras);
-        startActivity(intent);
-    }
 
-    // Disable Return Button
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-
+        // Disable Return Button
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
                 return true;
-//            switch (event.getKeyCode()) {
-//                case KeyEvent.KEYCODE_BACK:
-//                    return true;
-//            }
         }
 
         return super.dispatchKeyEvent(event);

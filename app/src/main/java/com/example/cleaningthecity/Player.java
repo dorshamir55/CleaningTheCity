@@ -11,16 +11,6 @@ public class Player  {
         this.name = name;
     }
 
-    public Player(){}
-
-//    public int getRank() {
-//        return rank;
-//    }
-
-//    public void setRank(int rank) {
-//        this.rank=rank;
-//    }
-
     public int getScore() {
         return score;
     }

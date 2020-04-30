@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private TextView scoreLabel;
@@ -35,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("PlayerName");
         int score = getIntent().getIntExtra("SCORE", 0);
         int level = getIntent().getIntExtra("Level",1);
-        scoreLabel.setText(score + "");
+        scoreLabel.setText(String.format(Locale.getDefault(),"%d", score));
         checkResults(level);
 
         // update sqlite data with the new result
@@ -45,13 +47,13 @@ public class ResultActivity extends AppCompatActivity {
         int highScore = settings.getInt("HIGH_SCORE", 0);
 
         if (score > highScore) {
-            highScoreLabel.setText(getString(R.string.high_score) + highScore);
+            highScoreLabel.setText(String.format(Locale.getDefault(),"%s%d", getString(R.string.high_score), highScore));
             // Update High Score
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", score);
-            editor.commit();
+            editor.apply();
         } else {
-            highScoreLabel.setText(getString(R.string.high_score) + highScore);
+            highScoreLabel.setText(String.format(Locale.getDefault(),"%s%d", getString(R.string.high_score), highScore));
         }
     }
 

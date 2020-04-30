@@ -12,9 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class ResultActivity extends AppCompatActivity {
     private DatabaseHelper db;
@@ -29,18 +27,18 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         db = new DatabaseHelper(this);
-
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         highScoreLabel = (TextView) findViewById(R.id.highScoreLabel);
         endGame = (TextView) findViewById(R.id.endGame);
 
-
+        // get variables info from bundle/intent
         String name = getIntent().getStringExtra("PlayerName");
         int score = getIntent().getIntExtra("SCORE", 0);
         int level = getIntent().getIntExtra("Level",1);
         scoreLabel.setText(score + "");
         checkResults(level);
 
+        // update sqlite data with the new result
         db.insertDataRecords(score,name);
 
         SharedPreferences settings = getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
@@ -48,17 +46,13 @@ public class ResultActivity extends AppCompatActivity {
 
         if (score > highScore) {
             highScoreLabel.setText(getString(R.string.high_score) + highScore);
-
             // Update High Score
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", score);
             editor.commit();
-
         } else {
             highScoreLabel.setText(getString(R.string.high_score) + highScore);
-
         }
-
     }
 
     @Override
@@ -69,7 +63,8 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==R.id.share) {
+        // share score/result
+        if (item.getItemId() == R.id.share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.titleShare));
@@ -78,12 +73,12 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         return true;
-
     }
 
     private void checkResults(int level) {
         LinearLayout myLayout = (LinearLayout) findViewById(R.id.my_layout);
         TextView endText = (TextView) findViewById(R.id.endGameText);
+
         if(level==11)
         {
             endGame.setText(getString(R.string.win_game));
@@ -97,11 +92,13 @@ public class ResultActivity extends AppCompatActivity {
         }
     }
 
-    public void backMenu(View view) {
+    public void backMainMenu(View view) {
+        // back to start activity
         startActivity(new Intent(getApplicationContext(), StartActivity.class));
     }
 
     public void tryAgain(View view) {
+        // new game
         String name = getIntent().getStringExtra("PlayerName");
         Intent intent = new Intent(ResultActivity.this, MainActivity.class);
         Bundle extras = new Bundle();
@@ -110,24 +107,13 @@ public class ResultActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public Integer deleteOldRecord(String selected){
-        db = new DatabaseHelper(this);
-        SQLiteDatabase da = db.getReadableDatabase();
-        return da.delete(DatabaseHelper.TABLE_NAME, "score = ?", new String[]{selected});
-    }*/
-    
 
-    // Disable Return Button
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-
+        // Disable Return Button
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
                 return true;
-//            switch (event.getKeyCode()) {
-//                case KeyEvent.KEYCODE_BACK:
-//                    return true;
-//            }
         }
 
         return super.dispatchKeyEvent(event);

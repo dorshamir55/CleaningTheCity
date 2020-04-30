@@ -9,7 +9,7 @@ import android.os.Build;
 public class SoundPlayer {
 
     private AudioAttributes audioAttributes;
-    final int SOUND_POOL_MAX = 2;
+    final int SOUND_POOL_MAX = 2; // number of sounds track
 
     private static SoundPool soundPool;
     private static int hitSound;
@@ -41,7 +41,6 @@ public class SoundPlayer {
     }
 
     public void playHitSound() {
-
         // play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
         soundPool.play(hitSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }

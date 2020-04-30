@@ -19,10 +19,10 @@
     <string name="back_menu">חזרה לתפריט</string>
     <string name="level_up">"שלב "</string>
     <string name="instructions_window">הוראות</string>
-    <string name="game_instructions">אסוף את כל הזבל בעיר והמנע מלקחת את השחור</string>
+    <string name="game_instructions">אסוף את כל הזבל בעיר ותזהר מהמוקשים השחורים</string>
     <string name="game_instructions_title">הוראות המשחק</string>
     <string name="instructions_btn">הוראות</string>
-    <string name="intro_txt">היי! אנחנו זקוקים לעזרתך בניקיון העיר לפני שנאבד אותה</string>
+    <string name="intro_txt">היי! אנחנו זקוקים לעזרתך בניקיון העיר</string>
     <string name="instruction_points10">10 נקודות</string>
     <string name="instruction_points30">30 נקודות</string>
     <string name="instruction_healkit">התאוששות</string>

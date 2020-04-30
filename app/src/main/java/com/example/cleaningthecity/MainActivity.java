@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView[] lifes;
     private ImageView levelUpImage;
     private ImageView roadImage;
-    private ArrayList<Integer> imgArr;
+    private ArrayList<Integer> imgArr; // used to load the game 10 points objects
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
     private AnimationDrawable roadAnimation;
@@ -45,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
 
     // Size
     private int frameHeight;
-    private int boxSize;
+    private int truckSize;
     private int screenWidth;
     private int screenHeight;
 
     // Position
-    private int boxY;
+    private int truckY;
     private int objectsX;
     private int objectsY;
     private int bonusObjX;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private int healKitY;
 
     // Speed
-    private int boxSpeed;
+    private int truckSpeed;
     private int objectsSpeed;
     private int bonusObjSpeed;
     private int blackSpeed;
@@ -76,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
     private final int maxLevel = 11;
 
     //life
-    private int life_count;
+    private int lifeCount;
 
     // Initialize Class
     private Handler handler = new Handler();
     private Timer timer = new Timer();
     private SoundPlayer sound;
-
+    Random rand = new Random(); // initialize over here and used in changePos (to avoid recreate every time)
 
     // Status Check
     private boolean action_flg = false;
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         levelBackGround = (TableRow) findViewById(R.id.tableBackGround);
         musicButton = (MusicButton) findViewById(R.id.music_btn);
 
+        //load life objects (triple)
         lifes = new ImageView[3];
         lifes[0] = (ImageView) findViewById(R.id.heart);
         lifes[1] = (ImageView) findViewById(R.id.heart2);
@@ -118,9 +119,10 @@ public class MainActivity extends AppCompatActivity {
         lifes[1].setTag(findViewById(R.id.heart));
         lifes[2].setTag(findViewById(R.id.heart));
 
+        // load objects to array, initialize imgArr
         getResourcesImages();
 
-        // Get screen size.
+        // Get screen size to better match for display game
         WindowManager wm = getWindowManager();
         Display disp = wm.getDefaultDisplay();
         Point size = new Point();
@@ -131,21 +133,15 @@ public class MainActivity extends AppCompatActivity {
 
         // Now
         // Nexus4 Width: 768 Height:1280
-        // Speed Box:20 Orange:12 Pink:20 Black:16
+        // Speed Truck:21 Objects(10 points):13 bonusObject(30 points):21 Black:17 healKit: 25
 
-        boxSpeed = Math.round(screenHeight / 60);  // 1280 / 60 = 21.333... => 21
+        truckSpeed = Math.round(screenHeight / 60);  // 1280 / 60 = 21.333... => 21
         objectsSpeed = Math.round(screenWidth / 60); // 768 / 60 = 12.8 => 13
         bonusObjSpeed = Math.round(screenWidth / 36);   // 768 / 36 = 21.333... => 21
         blackSpeed = Math.round(screenWidth / 45); // 768 / 45 = 17.06... => 17
         healKitSpeed = Math.round(screenWidth / 36); // 768/30 =25.6..=>25
 
-        //Log.v("SPEED_BOX", boxSpeed + "");
-        //Log.v("SPEED_ORANGE", objectsSpeed + "");
-        //Log.v("SPEED_PINK", bonusObjSpeed + "");
-        //Log.v("SPEED_BLACK", blackSpeed + "");
-
-
-        // Move to out of screen.
+        // Move to out of screen for user wont see it on the start screen
         objects.setX(-80);
         objects.setY(-80);
         bonusObject.setX(-80);
@@ -155,23 +151,26 @@ public class MainActivity extends AppCompatActivity {
         healKit.setX(-80);
         healKit.setY(-80);
 
-        //score label
-        scoreLabel.setText(getString(R.string.game_score) + "0");
-        levelLabel.setText(getString(R.string.level)+ "1");
+        //score&level label
+        scoreLabel.setText(String.format("%s0", getString(R.string.game_score)));
+        levelLabel.setText(String.format("%s1", getString(R.string.level)));
 
         //life count
-        life_count = 3;
+        lifeCount = 3;
 
+        //background road animation
         roadImage.setBackgroundResource(R.drawable.road_animation);
         roadAnimation = (AnimationDrawable) roadImage.getBackground();
         roadImage.setVisibility(View.VISIBLE);
 
+        //truck animation
         garbageTruckImage.setBackgroundResource(R.drawable.garbage_truck_animation);
         garbageTruckAnimation = (AnimationDrawable) garbageTruckImage.getBackground();
         garbageTruckImage.setVisibility(View.VISIBLE);
     }
 
     private void getResourcesImages() {
+        // in this function we load all the resources images of 10 points objects in game (dynamic loader)
         imgArr = new ArrayList<>();
         Field[] fields = R.drawable.class.getFields();
         for(Field field : fields){
@@ -184,15 +183,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void changePos() {
-
+        /*
+            This function control the positions of the objects in the game,
+            the start position(before press play) will be out of user view (width screen +x)
+            when the game start(After press play) there will be random math function to place the object position
+         */
         hitCheck();
 
         // normal objects
         objectsX -= objectsSpeed;
-        if (objectsX < 0) {
-            Random rand = new Random();
-            objects.setImageResource(imgArr.get(rand.nextInt(imgArr.size())));
 
+        if (objectsX < 0) {
+            //Random rand = new Random();
+            int numberOfObjects = imgArr.size();
+
+            objects.setImageResource(imgArr.get(rand.nextInt(numberOfObjects))); // get random object of 10 points from array(rand not +1 cuz array its 0-4)
             objectsX = screenWidth + 20;
             objectsY = (int) Math.floor(Math.random() * (frameHeight - objects.getHeight()));
         }
@@ -212,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
 
         // bonus recycle object
         bonusObjX -= bonusObjSpeed;
-        if (bonusObjX < 0) { //score>500*level && life_count< 3
-            bonusObjX = screenWidth + 10000;//raise the number make it rare
+        if (bonusObjX < 0) {
+            bonusObjX = screenWidth + 10000; //raise the number make it rare
             bonusObjY = (int) Math.floor(Math.random() * (frameHeight - bonusObject.getHeight()));
         }
         bonusObject.setX(bonusObjX);
@@ -221,48 +226,53 @@ public class MainActivity extends AppCompatActivity {
 
         //Heal kit object
         healKitX -= healKitSpeed;
-        if(life_count<3 && score>70*level && healKitX<0)
+        if(lifeCount < 3 && score>70*level && healKitX<0)
         {
-            healKitX = screenWidth + 20000;
+            // if user has 2 or less lifes , the score is higher according to the level so heal kit will appear
+            healKitX = screenWidth + 20000; //raise the number make it rare
             healKitY = (int) Math.floor(Math.random() * (frameHeight - healKit.getHeight()));
         }
         healKit.setX(healKitX);
         healKit.setY(healKitY);
 
-        // Move Box
+        // Move Truck
         if (action_flg) {
             // Touching
-            boxY -= boxSpeed;
+            truckY -= truckSpeed;
 
         } else {
             // Releasing
-            boxY += boxSpeed;
+            truckY += truckSpeed;
         }
 
-        // Check box position.
-        if (boxY < 0) boxY = 0;
+        // Check Truck position, and control the Truck position according to screen&frame limit
+        if (truckY < 0) truckY = 0;
+        if (truckY > frameHeight - truckSize) truckY = frameHeight - truckSize;//framgeheight-truckheight
+        garbageTruckImage.setY(truckY);
 
-        if (boxY > frameHeight - boxSize) boxY = frameHeight - boxSize;//framgeheight-boxheight
+        //update score
+        scoreLabel.setText(String.format("%s%d", getString(R.string.game_score), score));
 
-        garbageTruckImage.setY(boxY);
-
-        scoreLabel.setText(getString(R.string.game_score) + score);
-
-        if(score>=pointsPerLevel*level){
+        //change game settings when user get next level
+        if(score >= pointsPerLevel*level){
             level++;
             blackSpeed+=1;
             objectsSpeed +=1;
             bonusObjSpeed +=1;
             String setLevel = getString(R.string.level)+ level;
             levelLabel.setText(setLevel);
+
             switch (level){
-                case ((maxLevel-1)/2):
+                case ((maxLevel - 1) / 2):
+                    //level 5
                     levelBackGround.setBackgroundResource(R.drawable.midlevel);
                     break;
-                case (maxLevel-1):
+                case (maxLevel - 1):
+                    //level 10
                     levelBackGround.setBackgroundResource(R.drawable.maxlevel);
                     break;
                 case (maxLevel):
+                    //finish Game
                     endGame();
                     break;
                 default:
@@ -270,8 +280,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            //level up animation
-            levelUpImage.setBackgroundResource(checkLang()?R.drawable.level_up_animation:R.drawable.level_up_animation2);
+            //level up animation (check if its heb/english phone to show the right animation)
+            levelUpImage.setBackgroundResource(checkLang() ? R.drawable.level_up_animation : R.drawable.level_up_animation2);
             levelUpAnimation = (AnimationDrawable) levelUpImage.getBackground();
             levelUpImage.setVisibility(View.VISIBLE);
             levelUpAnimation.start();
@@ -282,11 +292,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean checkLang() {
-        if (Locale.getDefault().getLanguage().equals(new Locale("en").getLanguage())) //if the code lang will change
-        {
-            return true;//lang = enlish
-        }
-        return false; //lang = iw - hebrew
+        //return true if its english else hebrew
+        //new locale en -if the code lang will change
+        return Locale.getDefault().getLanguage().equals(new Locale("en").getLanguage());
+
     }
 
     public void timerDelayRemoveView(long time, final ImageView v) {
@@ -301,30 +310,28 @@ public class MainActivity extends AppCompatActivity {
     }
     public void hitCheck() {
 
-        // If the center of the ball is in the box, it counts as a hit.
+        // If the center of the ball is in the truck, it counts as a hit.
 
         // objects 10 points
         int objectsCenterX = objectsX + objects.getWidth() / 2;
         int objectsCenterY = objectsY + objects.getHeight() / 2;
 
-        // 0 <= objectsCenterX <= boxWidth
-        // boxY <= objectsCenterY <= boxY + boxHeight
-
-        if (0 <= objectsCenterX && objectsCenterX <= boxSize &&
-                boxY <= objectsCenterY && objectsCenterY <= boxY + boxSize) {
+        // 0 <= objectsCenterX <= truckWidth
+        // truckY <= objectsCenterY <= truckY + truckHeight
+        if (0 <= objectsCenterX && objectsCenterX <= truckSize &&
+                truckY <= objectsCenterY && objectsCenterY <= truckY + truckSize) {
 
             score += 10;
             objectsX = -10;
             sound.playHitSound();
-
         }
 
         // bonus recycle object
         int bonusObjCenterX = bonusObjX + bonusObject.getWidth() / 2;
         int bonusObjCenterY = bonusObjY + bonusObject.getHeight() / 2;
 
-        if (0 <= bonusObjCenterX && bonusObjCenterX <= boxSize &&
-                boxY <= bonusObjCenterY && bonusObjCenterY <= boxY + boxSize) {
+        if (0 <= bonusObjCenterX && bonusObjCenterX <= truckSize &&
+                truckY <= bonusObjCenterY && bonusObjCenterY <= truckY + truckSize) {
 
             score += 30;
             bonusObjX = -10;
@@ -335,15 +342,15 @@ public class MainActivity extends AppCompatActivity {
         int healKitCenterX = healKitX + healKit.getWidth() / 2;
         int healKitCenterY = healKitY + healKit.getHeight() / 2;
 
-        if (0 <= healKitCenterX && healKitCenterX <= boxSize &&
-                boxY <= healKitCenterY && healKitCenterY <= boxY + boxSize) {
+        if (0 <= healKitCenterX && healKitCenterX <= truckSize &&
+                truckY <= healKitCenterY && healKitCenterY <= truckY + truckSize) {
             for(ImageView check:lifes)
             {
                 if(check.getTag().equals(R.drawable.heart_g))
                 {
                     check.setImageResource(R.drawable.heart);
                     check.setTag(R.drawable.heart);//to avoid get into this condition again
-                    life_count++;
+                    lifeCount++;
                     break;
                 }
             }
@@ -357,28 +364,25 @@ public class MainActivity extends AppCompatActivity {
         int blackCenterX = blackX + black.getWidth() / 2;
         int blackCenterY = blackY + black.getHeight() / 2;
 
-        if (0 <= blackCenterX && blackCenterX <= boxSize &&
-                boxY <= blackCenterY && blackCenterY <= boxY + boxSize) {
-            lifes[life_count-1].setImageResource(R.drawable.heart_g);
-            lifes[life_count-1].setTag(R.drawable.heart_g);
-            life_count--;
+        if (0 <= blackCenterX && blackCenterX <= truckSize &&
+                truckY <= blackCenterY && blackCenterY <= truckY + truckSize) {
+            lifes[lifeCount -1].setImageResource(R.drawable.heart_g);
+            lifes[lifeCount -1].setTag(R.drawable.heart_g);
+            lifeCount--;
             sound.playOverSound();
 
             blackX = -10;
 
-            if(life_count==0)
+            if(lifeCount == 0)
             {
                 endGame();
             }
-
         }
-
-
-
     }
 
     public void endGame(){
-        String playerLevel = levelLabel.getText().toString();
+        // String playerLevel = levelLabel.getText().toString(); ask DOR
+
         // Stop Timer
         timer.cancel();
         timer = null;
@@ -386,9 +390,13 @@ public class MainActivity extends AppCompatActivity {
         // Show Result
         String name = getIntent().getStringExtra("PlayerName");
         musicButton.destroySound();
+
+        // user finish the game (get lvl 10) so max score = 10*PPL
+        score = level == maxLevel?(maxLevel - 1) * pointsPerLevel : score;
+
+        // Bundle variables
         Intent intent = new Intent(MainActivity.this, ResultActivity.class);
         Bundle extras = new Bundle();
-        score = level==maxLevel?(maxLevel-1)*pointsPerLevel:score;
         extras.putInt("SCORE", score);
         extras.putString("PlayerName",name);
         extras.putInt("Level",level);
@@ -398,25 +406,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean onTouchEvent(MotionEvent me) {
-        roadAnimation.start();
-        garbageTruckAnimation.start();
-
         if (!start_flg) {
-
             start_flg = true;
+            roadAnimation.start();
+            garbageTruckAnimation.start();
 
-            // Why get frame height and box height here?
-            // Because the UI has not been set on the screen in OnCreate()!!
-
+            // get frame height and truck height here,
+            // Because the UI hasn't been set on the screen in OnCreate()
             FrameLayout frame = (FrameLayout) findViewById(R.id.frame);
             frameHeight = frame.getHeight();
+            truckY = (int)garbageTruckImage.getY();
 
-            boxY = (int)garbageTruckImage.getY();
-
-            // The box is a square.(height and width are the same.)
-            boxSize = garbageTruckImage.getHeight();
-            //boxHeight = box.getHeight***
-            //boxWidth = box.getWidth***
+            // square(height and width are the same.)
+            truckSize = garbageTruckImage.getHeight();
+            //truckHeight = truck.getHeight
+            //truckWidth = truck.getWidth
 
             startLabel.setVisibility(View.GONE);
 
@@ -430,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-            }, 0, 20);
+            }, 0, 20);  // call changePos every 20 millisec
 
 
         } else {
@@ -446,17 +450,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // Disable Return Button
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-
+        // Disable Buttons , right now just return button but if needed more can do switch case
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
                 return true;
-//            switch (event.getKeyCode()) {
-//                case KeyEvent.KEYCODE_BACK:
-//                    return true;
-//            }
         }
 
         return super.dispatchKeyEvent(event);

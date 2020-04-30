@@ -381,8 +381,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void endGame(){
-        // String playerLevel = levelLabel.getText().toString(); ask DOR
-
         // Stop Timer
         timer.cancel();
         timer = null;

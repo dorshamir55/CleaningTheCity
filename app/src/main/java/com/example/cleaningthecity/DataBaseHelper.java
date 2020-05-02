@@ -22,6 +22,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
     }
 
+    //Create new table if doesn't exist
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table "+TABLE_NAME+" (score INTEGER, name TEXT)");
@@ -36,6 +37,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         //onCreate(sqLiteDatabase);
     }
 
+    //Insert data to records DB
     public boolean insertDataRecords(int i_score, String i_name) {
         SQLiteDatabase db= this.getWritableDatabase();
         if(QueryNumEntries() >= TABLE_SIZE_LIMIT)
@@ -69,6 +71,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         return DatabaseUtils.queryNumEntries(db, TABLE_NAME);
     }
 
+    //Get all data from records DB
     public ArrayList<Player> getAllData()
     {
         ArrayList<Player> arrayList = new ArrayList<>();

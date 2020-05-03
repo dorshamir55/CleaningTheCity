@@ -69,8 +69,7 @@ public class ResultActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.share) {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.titleShare));
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, scoreLabel.getText().toString());
+            sharingIntent.putExtra(Intent.EXTRA_TEXT,getString(R.string.titleShare) + scoreLabel.getText().toString());
             startActivity(Intent.createChooser(sharingIntent,getString(R.string.share)));
         }
 

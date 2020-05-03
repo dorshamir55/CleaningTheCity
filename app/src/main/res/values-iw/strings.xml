@@ -31,7 +31,7 @@
     <string name="text_win">הצלחת לנקות את העיר, כל התושבים מודים לך ומעריכים!</string>
     <string name="text_lose">התושבים מודים על עזרתך אך נשאר עבודה רבה לניקוי העיר, נסה שוב</string>
     <string name="share">שיתוף התוצאה</string>
-    <string name="titleShare">היי! סתכל את הניקוד שלי באפליקציה ניקוי העיר</string>
+    <string name="titleShare">"היי! סתכל את הניקוד שלי באפליקציה ניקוי העיר: "</string>
     <string name="music_on_off">כיבוי/הדלקה מוסיקה</string>
     <string name="sound_click">כפתור הסאונד נלחץ</string>
 </resources>

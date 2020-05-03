@@ -31,14 +31,14 @@ public class RecordsActivity extends AppCompatActivity {
     }
 
     private void loadDataInListView() {
-        // load data from sqlite
+        // load data from SQLITE
         arrayList = databaseHelper.getAllData();
         myAdapter = new MyAdapter(this,arrayList);
         listView.setAdapter(myAdapter);
         myAdapter.notifyDataSetChanged();
     }
 
-    public static class LoaderAsyncTask extends AsyncTask<Integer, Integer, String> {
+    private static class LoaderAsyncTask extends AsyncTask<Integer, Integer, String> {
         private WeakReference<RecordsActivity> activityWeakReference;
 
         LoaderAsyncTask(RecordsActivity activity) {
@@ -98,3 +98,27 @@ public class RecordsActivity extends AppCompatActivity {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -58,7 +58,7 @@ public class RecordsActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... integers) {
-            // loading bar
+            // loading bar - do "heavy" job
             for (int i = 0; i <= integers[0]; i++) {
                 publishProgress(i * 100 / integers[0]);
                 try {

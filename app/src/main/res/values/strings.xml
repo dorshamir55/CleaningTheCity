@@ -33,4 +33,16 @@
     <string name="titleShare">Hey watch my result from Cleaning The City Quizz APP: </string>
     <string name="music_on_off">music on/off</string>
     <string name="sound_click">Sound button clicked</string>
+    <string name="lifes_object">lifes object</string>
+    <string name="background_description">back ground road animation</string>
+    <string name="lvl_animation_description">level up animation</string>
+    <string name="player_object_description">player object, truck</string>
+    <string name="object_10points_description">objects of 10point</string>
+    <string name="object_harm_description">object that hit player life</string>
+    <string name="bonus_object_description">object with extra points,bonus</string>
+    <string name="object_healkit_description">object that heal player lifes</string>
+    <string name="default_score_text">0</string>
+    <string name="exit_text_instructions">X</string>
+    <string name="objects_descritpions_instructions">objects Hit</string>
+    <string name="objects_hit_descritpions_instructions">objects Hit</string>
 </resources>

@@ -32,7 +32,7 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
         <ImageView
-            android:contentDescription="lifes object"
+            android:contentDescription="@string/lifes_object"
             android:id="@+id/heart"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:layout_gravity="top"/>
         <ImageView
-            android:contentDescription="lifes object"
+            android:contentDescription="@string/lifes_object"
             android:id="@+id/heart2"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -49,7 +49,7 @@
             android:src="@drawable/heart" />
 
         <ImageView
-            android:contentDescription="lifes object"
+            android:contentDescription="@string/lifes_object"
             android:id="@+id/heart3"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -74,7 +74,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:contentDescription="back ground road animation"
+            android:contentDescription="@string/background_description"
             android:id="@+id/roadImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="60dp"
-            android:contentDescription="level up animation" />
+            android:contentDescription="@string/lvl_animation_description" />
 
         <TextView
             android:id="@+id/startLabel"
@@ -98,35 +98,35 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:contentDescription="player object, truck"
+            android:contentDescription="@string/player_object_description"
             android:id="@+id/garbageTruckImage"
             android:layout_width="85dp"
             android:layout_height="45dp"
             android:layout_gravity="center_vertical"/>
 
         <ImageView
-            android:contentDescription="objects of 10point"
+            android:contentDescription="@string/object_10points_description"
             android:id="@+id/objects"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/object1"/>
 
         <ImageView
-            android:contentDescription="object that hit player life"
+            android:contentDescription="@string/object_harm_description"
             android:id="@+id/black"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/black"/>
 
         <ImageView
-            android:contentDescription="object with extra points,bonus"
+            android:contentDescription="@string/bonus_object_description"
             android:id="@+id/objectBonus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/recyclebonus"/>
 
         <ImageView
-            android:contentDescription="object that heal player lifes"
+            android:contentDescription="@string/object_healkit_description"
             android:id="@+id/objectHeal"
             android:layout_width="30dp"
             android:layout_height="30dp"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="300dp"
@@ -11,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:textColor="@color/white"
-        android:text="X"
+        android:text="@string/exit_text_instructions"
         android:textStyle="bold"
         android:layout_gravity="end"
         android:gravity="center"
@@ -45,35 +46,35 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:contentDescription="objects Hit"
+                android:contentDescription="@string/objects_descritpions_instructions"
                 android:src="@drawable/object1" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:contentDescription="objects Hit"
+                android:contentDescription="@string/objects_hit_descritpions_instructions"
                 android:src="@drawable/object2" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:contentDescription="objects Hit"
+                android:contentDescription="@string/objects_hit_descritpions_instructions"
                 android:src="@drawable/object3" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:contentDescription="objects Hit"
+                android:contentDescription="@string/objects_hit_descritpions_instructions"
                 android:src="@drawable/object4" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:contentDescription="objects Hit"
+                android:contentDescription="@string/objects_hit_descritpions_instructions"
                 android:src="@drawable/object5" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -86,16 +87,17 @@
 
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="20dp"
-                android:contentDescription="bonus object hit"
+                android:contentDescription="@string/bonus_object_description"
                 android:src="@drawable/recyclebonus" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -108,16 +110,17 @@
 
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="20dp"
-                android:contentDescription="heal kit"
+                android:contentDescription="@string/object_healkit_description"
                 android:src="@drawable/healkit" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.05"
                 android:gravity="center"
@@ -130,16 +133,17 @@
 
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:layout_width="151dp"
                 android:layout_height="20dp"
-                android:contentDescription="bad object hit"
+                android:contentDescription="@string/object_harm_description"
                 android:src="@drawable/black" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"

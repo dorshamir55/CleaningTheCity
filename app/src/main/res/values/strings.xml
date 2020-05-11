@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CleaningTheCity</string>
+    <string name="app_name">Cleaning the city</string>
     <string name="game_over">GAME OVER!</string>
     <string name="try_again">Try Again</string>
     <string name="game_name">Clean The City</string>

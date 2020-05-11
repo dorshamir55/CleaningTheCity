@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CleaningTheCity</string>
+    <string name="app_name">נקיון העיר</string>
     <string name="game_name">נקיון העיר</string>
     <string name="try_again">נסה שנית</string>
     <string name="game_over">המשחק נגמר!</string>

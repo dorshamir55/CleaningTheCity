@@ -6,9 +6,7 @@
     <TableRow
         android:id="@+id/tableBackGround"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/firstlevel"
-        android:layout_marginTop="15dp" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/scoreLabel"
@@ -18,7 +16,8 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:text="@string/game_score"
-            android:textColor="@color/black"
+            android:textColor="@color/lightBlue"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
 
@@ -29,7 +28,8 @@
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:text="@string/level"
-            android:textColor="@color/black"
+            android:textColor="@color/lightBlue"
+            android:textStyle="bold"
             android:textSize="18sp" />
         <ImageView
             android:contentDescription="@string/lifes_object"
@@ -64,10 +64,28 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:background="@drawable/musicoff"
-            android:gravity="center"
-            android:hint="@string/music_on_off" />
+            android:gravity="center"/>
     </TableRow>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/first_image"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/firstlevel"
+            android:orientation="horizontal"/>
+        <LinearLayout
+            android:id="@+id/second_image"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/firstlevel"
+            android:orientation="horizontal" />
+    </LinearLayout>
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
@@ -92,9 +110,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:text="@string/tap_to_start"
-            android:textColor="@color/black"
+            android:padding="20dp"
+            android:background="@drawable/circle_background"
+            android:textColor="@color/lightBlue"
             android:textSize="30sp" />
 
         <ImageView

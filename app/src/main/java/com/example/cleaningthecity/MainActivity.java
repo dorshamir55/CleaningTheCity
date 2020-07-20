@@ -7,6 +7,7 @@ import android.graphics.drawable.AnimationDrawable;
 
 import android.os.Handler;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -25,7 +27,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
-    private TableRow levelBackGround;
+    private LinearLayout levelBackGround;
     private TextView scoreLabel;
     private TextView startLabel;
     private TextView levelLabel;
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
         healKit = (ImageView) findViewById(R.id.objectHeal);
-        levelBackGround = (TableRow) findViewById(R.id.tableBackGround);
+        levelBackGround = findViewById(R.id.first_image);
         musicButton = (MusicButton) findViewById(R.id.music_btn);
 
         //load life objects (triple)
@@ -265,6 +267,15 @@ public class MainActivity extends AppCompatActivity {
             switch (level){
                 case ((maxLevel - 1) / 2):
                     //level 5
+                    LinearLayout secondImage = findViewById(R.id.second_image);
+                    secondImage.setVisibility(View.GONE);
+
+                    DisplayMetrics displayMetrics = new DisplayMetrics();
+                    getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                    int height = displayMetrics.heightPixels;
+                    int width = displayMetrics.widthPixels;
+
+                    levelBackGround.setMinimumWidth(width);
                     levelBackGround.setBackgroundResource(R.drawable.midlevel);
                     break;
                 case (maxLevel - 1):

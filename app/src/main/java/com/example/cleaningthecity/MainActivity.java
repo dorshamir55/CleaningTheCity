@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView[] lifes;
     private ImageView levelUpImage;
     private ImageView roadImage;
+    private ImageView pauseImage;
     private ArrayList<Integer> imgArr; // used to load the game 10 points objects
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
@@ -89,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
     // Status Check
     private boolean action_flg = false;
     private boolean start_flg = false;
-
-
+    private boolean pause_flg = false;
 
 
     @Override
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         bonusObject = (ImageView) findViewById(R.id.objectBonus);
         black = (ImageView) findViewById(R.id.black);
         healKit = (ImageView) findViewById(R.id.objectHeal);
+        pauseImage = findViewById(R.id.pause_image);
         levelBackGround = findViewById(R.id.first_image);
         musicButton = (MusicButton) findViewById(R.id.music_btn);
 
@@ -391,6 +393,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        musicButton.destroySound();
+    }
+
     public void endGame(){
         // Stop Timer
         timer.cancel();
@@ -468,6 +476,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.dispatchKeyEvent(event);
+    }
+
+    public void pauseGame(View view){
+        if(pause_flg == false){
+            pause_flg=true;
+            timer.cancel();
+            timer = null;
+
+            Drawable d = getResources().getDrawable(R.drawable.ic_pause);
+
+        }
     }
 
 }

@@ -77,5 +77,7 @@ public class MusicButton extends AppCompatButton {
         String msg = getResources().getString(R.string.sound_click);
         Toast.makeText(getContext(), msg , Toast.LENGTH_SHORT).show();
     }
+
+
 }
 

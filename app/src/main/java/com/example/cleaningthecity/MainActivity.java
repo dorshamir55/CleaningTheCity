@@ -1,6 +1,8 @@
 package com.example.cleaningthecity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.drawable.AnimationDrawable;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView levelUpImage;
     private ImageView roadImage;
     private ImageView pauseImage;
+    private ImageView resumeImage;
     private ArrayList<Integer> imgArr; // used to load the game 10 points objects
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
@@ -91,8 +94,11 @@ public class MainActivity extends AppCompatActivity {
     // Status Check
     private boolean action_flg = false;
     private boolean start_flg = false;
-    private boolean pause_flg = false;
-
+    public static boolean pause_flg = false;
+    private boolean backToMusic = false;
+    public static boolean musicOn = false;
+    private boolean firstCreationActivityAndStartedTheGame = true;
+    private boolean endGame_flg = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,8 +117,25 @@ public class MainActivity extends AppCompatActivity {
         black = (ImageView) findViewById(R.id.black);
         healKit = (ImageView) findViewById(R.id.objectHeal);
         pauseImage = findViewById(R.id.pause_image);
+        resumeImage = findViewById(R.id.resume_image);
         levelBackGround = findViewById(R.id.first_image);
         musicButton = (MusicButton) findViewById(R.id.music_btn);
+
+        pauseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!firstCreationActivityAndStartedTheGame) {
+                    pauseGame();
+                }
+            }
+        });
+
+        resumeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pauseGame();
+            }
+        });
 
         //load life objects (triple)
         lifes = new ImageView[3];
@@ -393,16 +416,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        musicButton.destroySound();
-    }
-
     public void endGame(){
         // Stop Timer
         timer.cancel();
         timer = null;
+
+        pause_flg=true;
+        endGame_flg=true;
 
         // Show Result
         String name = getIntent().getStringExtra("PlayerName");
@@ -425,6 +445,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent me) {
         if (!start_flg) {
             start_flg = true;
+            firstCreationActivityAndStartedTheGame = false;
             roadAnimation.start();
             garbageTruckAnimation.start();
 
@@ -478,15 +499,81 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchKeyEvent(event);
     }
 
-    public void pauseGame(View view){
+    public void pauseGame(){
         if(pause_flg == false){
-            pause_flg=true;
+
             timer.cancel();
             timer = null;
 
-            Drawable d = getResources().getDrawable(R.drawable.ic_pause);
+            if(musicOn) {
+                backToMusic = true;
+                musicButton.performClick();
+            }
 
+            garbageTruckAnimation.stop();
+            roadAnimation.stop();
+
+            Drawable d = getResources().getDrawable(R.drawable.ic_resume);
+            pauseImage.setBackgroundDrawable(d);
+
+            CardView card_resume = findViewById(R.id.card_resume);
+            card_resume.setVisibility(View.VISIBLE);
+            pause_flg=true;
+        }
+        else{
+
+            /*if(backToMusic) {
+                backToMusic=false;
+                musicButton.performClick();
+            }*/
+
+            garbageTruckAnimation.run();
+            roadAnimation.run();
+
+            Drawable d = getResources().getDrawable(R.drawable.ic_pause);
+            pauseImage.setBackgroundDrawable(d);
+
+            CardView card_resume = findViewById(R.id.card_resume);
+            card_resume.setVisibility(View.INVISIBLE);
+            pause_flg=false;
+
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            changePos();
+                        }
+                    });
+                }
+            },0, 20);
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(musicOn) {
+            backToMusic = true;
+            if(!endGame_flg) {
+                musicButton.performClick();
+            }
+        }
+        if(!firstCreationActivityAndStartedTheGame && !endGame_flg) {
+            if (pause_flg == false) {
+                pauseGame();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(backToMusic){
+            backToMusic = false;
+            musicButton.performClick();
+        }
+    }
 }

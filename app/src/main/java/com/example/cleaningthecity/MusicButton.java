@@ -43,24 +43,23 @@ public class MusicButton extends AppCompatButton {
             return true;
         }
 
-    return false;
-}
+        return false;
+    }
 
     @Override
     public boolean performClick() {
         // android studio suggest to override this to remind think about the blind
         // or visually impaired people who may be using app
         super.performClick();
-        if(play)
-        {
+        if (play) {
             play = false;
+            MainActivity.musicOn = true;
             mediaPlayer.start();
             mediaPlayer.setLooping(true);
             setBackgroundResource(R.drawable.music);
-        }
-        else
-        {
+        } else {
             play = true;
+            MainActivity.musicOn = false;
             try {
                 mediaPlayer.stop();
                 mediaPlayer.prepare(); // to allow re play the music

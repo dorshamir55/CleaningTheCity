@@ -54,12 +54,14 @@ public class MusicButton extends AppCompatButton {
         if (play) {
             play = false;
             MainActivity.musicOn = true;
+            toastMsg(getResources().getString(R.string.music_on));
             mediaPlayer.start();
             mediaPlayer.setLooping(true);
             setBackgroundResource(R.drawable.music);
         } else {
             play = true;
             MainActivity.musicOn = false;
+            toastMsg(getResources().getString(R.string.music_off));
             try {
                 mediaPlayer.stop();
                 mediaPlayer.prepare(); // to allow re play the music
@@ -68,15 +70,13 @@ public class MusicButton extends AppCompatButton {
             }
             setBackgroundResource(R.drawable.musicoff);
         }
-        touchAlert();
         return true;
     }
-    private void touchAlert() {
-        // show toast msg when user clicked the music button
-        String msg = getResources().getString(R.string.sound_click);
-        Toast.makeText(getContext(), msg , Toast.LENGTH_SHORT).show();
-    }
 
+    private void toastMsg(String s) {
+        // show toast msg when user clicked the music button
+        Toast.makeText(getContext(), s , Toast.LENGTH_SHORT).show();
+    }
 
 }
 

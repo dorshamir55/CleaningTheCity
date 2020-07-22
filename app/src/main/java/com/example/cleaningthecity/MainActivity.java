@@ -32,7 +32,6 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
     private LinearLayout levelBackGround;
     private TextView scoreLabel;
-    private TextView startLabel;
     private TextView levelLabel;
     private ImageView garbageTruckImage;
     private ImageView objects;
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView roadImage;
     private ImageView pauseImage;
     private ImageView resumeImage;
+    private CardView startCard;
     private ArrayList<Integer> imgArr; // used to load the game 10 points objects
     private AnimationDrawable levelUpAnimation;
     private AnimationDrawable garbageTruckAnimation;
@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
     public static boolean pause_flg = false;
     private boolean backToMusic = false;
     public static boolean musicOn = false;
-    private boolean firstCreationActivityAndStartedTheGame = true;
     private boolean endGame_flg = false;
 
     @Override
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
         sound = new SoundPlayer(this);
         scoreLabel = (TextView) findViewById(R.id.scoreLabel);
-        startLabel = (TextView) findViewById(R.id.startLabel);
+        startCard = findViewById(R.id.card_start);
         levelLabel = (TextView) findViewById(R.id.levelLabel);
         levelUpImage = (ImageView) findViewById(R.id.levelUpImage);
         garbageTruckImage = (ImageView) findViewById(R.id.garbageTruckImage);
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         pauseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!firstCreationActivityAndStartedTheGame) {
+                if(start_flg) {
                     pauseGame();
                 }
             }
@@ -421,7 +420,7 @@ public class MainActivity extends AppCompatActivity {
         timer.cancel();
         timer = null;
 
-        pause_flg=true;
+        pause_flg=false;
         endGame_flg=true;
 
         // Show Result
@@ -445,7 +444,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent me) {
         if (!start_flg) {
             start_flg = true;
-            firstCreationActivityAndStartedTheGame = false;
             pauseImage.setVisibility(View.VISIBLE);
             roadAnimation.start();
             garbageTruckAnimation.start();
@@ -461,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
             //truckHeight = truck.getHeight
             //truckWidth = truck.getWidth
 
-            startLabel.setVisibility(View.GONE);
+            startCard.setVisibility(View.GONE);
 
             timer.schedule(new TimerTask() {
                 @Override
@@ -501,14 +499,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pauseGame(){
-        if(pause_flg == false){
+        if (pause_flg == false) {
 
             pauseImage.setVisibility(View.INVISIBLE);
 
             timer.cancel();
             timer = null;
 
-            if(musicOn) {
+            if (musicOn){
                 backToMusic = true;
                 musicButton.performClick();
             }
@@ -521,14 +519,13 @@ public class MainActivity extends AppCompatActivity {
 
             CardView card_resume = findViewById(R.id.card_resume);
             card_resume.setVisibility(View.VISIBLE);
-            pause_flg=true;
-        }
-        else{
+            pause_flg = true;
+        } else {
 
-            /*if(backToMusic) {
-                backToMusic=false;
+            if (backToMusic) {
+                backToMusic = false;
                 musicButton.performClick();
-            }*/
+            }
             pauseImage.setVisibility(View.VISIBLE);
 
             garbageTruckAnimation.run();
@@ -539,7 +536,7 @@ public class MainActivity extends AppCompatActivity {
 
             CardView card_resume = findViewById(R.id.card_resume);
             card_resume.setVisibility(View.INVISIBLE);
-            pause_flg=false;
+            pause_flg = false;
 
             timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -552,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-            },0, 20);
+            }, 0, 20);
         }
     }
 
@@ -565,7 +562,7 @@ public class MainActivity extends AppCompatActivity {
                 musicButton.performClick();
             }
         }
-        if(!firstCreationActivityAndStartedTheGame && !endGame_flg) {
+        if(start_flg && !endGame_flg) {
             if (pause_flg == false) {
                 pauseGame();
             }
@@ -575,9 +572,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(backToMusic){
+        /*if(backToMusic){
             backToMusic = false;
             musicButton.performClick();
-        }
+        }*/
     }
 }

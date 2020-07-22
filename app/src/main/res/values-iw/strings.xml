@@ -44,5 +44,5 @@
     <string name="object_harm_description">אובייקט שפוגע בשחקן</string>
     <string name="bonus_object_description">" בונוס, יותר נקודות"</string>
     <string name="object_healkit_description">מעלה חיים לשחקן</string>
-    <string name="resume">המשך</string>
+    <string name="resume">לחץ לחזרה למשחק</string>
 </resources>

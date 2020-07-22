@@ -45,5 +45,5 @@
     <string name="exit_text_instructions">X</string>
     <string name="objects_descritpions_instructions">objects Hit</string>
     <string name="objects_hit_descritpions_instructions">objects Hit</string>
-    <string name="resume">Resume</string>
+    <string name="resume">Click to return to the game</string>
 </resources>

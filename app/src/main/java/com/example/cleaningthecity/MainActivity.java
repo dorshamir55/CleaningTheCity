@@ -446,6 +446,7 @@ public class MainActivity extends AppCompatActivity {
         if (!start_flg) {
             start_flg = true;
             firstCreationActivityAndStartedTheGame = false;
+            pauseImage.setVisibility(View.VISIBLE);
             roadAnimation.start();
             garbageTruckAnimation.start();
 
@@ -502,6 +503,8 @@ public class MainActivity extends AppCompatActivity {
     public void pauseGame(){
         if(pause_flg == false){
 
+            pauseImage.setVisibility(View.INVISIBLE);
+
             timer.cancel();
             timer = null;
 
@@ -526,6 +529,7 @@ public class MainActivity extends AppCompatActivity {
                 backToMusic=false;
                 musicButton.performClick();
             }*/
+            pauseImage.setVisibility(View.VISIBLE);
 
             garbageTruckAnimation.run();
             roadAnimation.run();

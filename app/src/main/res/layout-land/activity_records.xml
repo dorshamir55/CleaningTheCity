@@ -39,7 +39,6 @@
         android:id="@+id/records_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:padding="10dp"
         android:layout_below="@+id/image_layout1"
@@ -52,7 +51,7 @@
             android:layout_weight="1"
             android:text="@string/records_rank"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/score_lbl"
@@ -61,7 +60,7 @@
             android:layout_weight="1"
             android:text="@string/records_score"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/name_lbl"
@@ -70,7 +69,7 @@
             android:layout_weight="1"
             android:text="@string/records_name"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -80,8 +79,8 @@
         android:layout_height="170dp"
         android:layout_below="@+id/linear"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="12dp" >
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp" >
 
     </ListView>
 

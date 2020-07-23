@@ -420,6 +420,7 @@ public class MainActivity extends AppCompatActivity {
         timer.cancel();
         timer = null;
 
+        musicOn=false;
         pause_flg=false;
         endGame_flg=true;
 

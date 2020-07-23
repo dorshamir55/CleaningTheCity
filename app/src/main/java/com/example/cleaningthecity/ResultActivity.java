@@ -37,7 +37,7 @@ public class ResultActivity extends AppCompatActivity {
         String name = getIntent().getStringExtra("PlayerName");
         int score = getIntent().getIntExtra("SCORE", 0);
         int level = getIntent().getIntExtra("Level",1);
-        scoreLabel.setText(String.format(Locale.getDefault(),"%d", score));
+        scoreLabel.setText(String.format(Locale.getDefault(),"%s%d", getString(R.string.your_score), score));
         checkResults(level);
 
         // update sqlite data with the new result

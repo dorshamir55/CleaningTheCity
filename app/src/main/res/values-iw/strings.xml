@@ -47,4 +47,6 @@
     <string name="resume">המשחק מושהה</string>
     <string name="music_on">מוזיקה הופעלה</string>
     <string name="music_off">מוזיקה הופסקה</string>
+    <string name="default_score_text">0</string>
+    <string name="your_score">"הניקוד שלך: "</string>
 </resources>

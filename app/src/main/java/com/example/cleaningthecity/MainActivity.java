@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
             levelLabel.setText(setLevel);
 
             switch (level){
-                case ((maxLevel - 1) / 2):
+                case ((int)(maxLevel * 0.333 + 1)):
                     //level 5
                     LinearLayout secondImage = findViewById(R.id.second_image);
                     secondImage.setVisibility(View.GONE);
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     levelBackGround.setMinimumWidth(width);
                     levelBackGround.setBackgroundResource(R.drawable.midlevel);
                     break;
-                case (maxLevel - 1):
+                case ((int)(maxLevel * 0.667 + 1)):
                     //level 10
                     levelBackGround.setBackgroundResource(R.drawable.maxlevel);
                     break;

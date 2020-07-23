@@ -4,6 +4,6 @@
     android:innerRadiusRatio="20"
     android:thickness="4dp"
     android:useLevel="true"> <!--to let higher api use this-->
-    <solid android:color="@color/colorPrimaryDark"/>
+    <solid android:color="@color/lightBlue"/>
 
 </shape>

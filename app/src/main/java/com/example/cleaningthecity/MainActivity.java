@@ -522,6 +522,7 @@ public class MainActivity extends AppCompatActivity {
             card_resume.setVisibility(View.VISIBLE);
             pause_flg = true;
         } else {
+            pause_flg=false;
 
             if (backToMusic) {
                 backToMusic = false;
@@ -537,7 +538,6 @@ public class MainActivity extends AppCompatActivity {
 
             CardView card_resume = findViewById(R.id.card_resume);
             card_resume.setVisibility(View.INVISIBLE);
-            pause_flg = false;
 
             timer = new Timer();
             timer.schedule(new TimerTask() {

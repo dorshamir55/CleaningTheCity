@@ -2,11 +2,11 @@
 
 Developed using Java in an Android studio.
 
+Your goal is to clean the city.
+
 SQLite was used for databases.
 
-The project included development specification and prerequisites, design and product testing.
-
-Included Design Patterns: Observer, Singleton, Factory and MVC architecture.
+Included: Asynctask, ListView, Animation, Sounds.
 
 ## Screenshots:
 ![Opening screen](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Opening_screen.jpg)

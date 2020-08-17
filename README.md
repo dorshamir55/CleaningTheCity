@@ -9,21 +9,20 @@ The project included development specification and prerequisites, design and pro
 Included Design Patterns: Observer, Singleton, Factory and MVC architecture.
 
 ## Screenshots:
-![Opening screen](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Opening screen.jpg)
-
+![Opening screen](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Opening_screen.jpg)
 ![Home](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home.jpg)
-![Home - name inserted](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home - name inserted.jpg)
-![Game instructions](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game instructions.jpg)
-![Loading records](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Loading records.jpg)
+![Home - name inserted](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home_name_inserted.jpg)
+![Game instructions](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game_instructions.jpg)
+![Loading records](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Loading_records.jpg)
 ![Records](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Records.jpg)
-![Start game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Start game.jpg)
-![Pause game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Pause game.jpg)
-![Level up](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Level up.jpg)
+![Start game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Start_game.jpg)
+![Pause game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Pause_game.jpg)
+![Level up](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Level_up.jpg)
 ![Playing](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing.jpg)
-![Playing 2](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing 2.jpg)
-![Playing 3](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing 3.jpg)
-![Game finished successfully](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game finished successfully.jpg)
-![Game over](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game over.jpg)
+![Playing 2](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing_2.jpg)
+![Playing 3](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing_3.jpg)
+![Game finished successfully](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game_finished_successfully.jpg)
+![Game over](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game_over.jpg)
 
 
 

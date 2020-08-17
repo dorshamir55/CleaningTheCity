@@ -9,7 +9,7 @@ The project included development specification and prerequisites, design and pro
 Included Design Patterns: Observer, Singleton, Factory and MVC architecture.
 
 ## Screenshots:
-![Home](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home.JPG)
+![Home](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home.jpg)
 
 ![MainScreen](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/MainScreen.PNG)
 ![MakeOrder](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/MakeOrder.PNG)

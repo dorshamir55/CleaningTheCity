@@ -1,4 +1,4 @@
-# Cleaning The City Android Game app
+# Cleaning The City - Android Game app
 
 Developed using Java in an Android studio.
 
@@ -6,7 +6,7 @@ Your goal is to clean the city.
 
 SQLite was used for databases.
 
-Included: Asynctask, ListView, Animation, Sounds.
+Included: Asynctask, Timer/Schedule, ListView, Animation, Sounds.
 
 ## Screenshots:
 ![Opening screen](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Opening_screen.jpg)

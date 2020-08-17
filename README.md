@@ -9,11 +9,21 @@ The project included development specification and prerequisites, design and pro
 Included Design Patterns: Observer, Singleton, Factory and MVC architecture.
 
 ## Screenshots:
-![Home](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home.jpg)
+![Opening screen](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Opening screen.jpg)
 
-![MainScreen](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/MainScreen.PNG)
-![MakeOrder](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/MakeOrder.PNG)
-![MyOrders](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/MyOrders.PNG)
-![AllOrders](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/AllOrders.PNG)
-![ManagerScreen](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/ManagerScreen.PNG)
-![RegisterNewEmployee](https://github.com/Dorshamir55/CarRentalSystem/raw/master/ScreenShots/RegisterNewEmployee.PNG)
+![Home](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home.jpg)
+![Home - name inserted](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Home - name inserted.jpg)
+![Game instructions](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game instructions.jpg)
+![Loading records](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Loading records.jpg)
+![Records](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Records.jpg)
+![Start game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Start game.jpg)
+![Pause game](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Pause game.jpg)
+![Level up](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Level up.jpg)
+![Playing](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing.jpg)
+![Playing 2](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing 2.jpg)
+![Playing 3](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Playing 3.jpg)
+![Game finished successfully](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game finished successfully.jpg)
+![Game over](https://github.com/Dorshamir55/CleaningTheCity/raw/master/ScreenShots/Game over.jpg)
+
+
+

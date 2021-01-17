@@ -493,7 +493,11 @@ public class MainActivity extends AppCompatActivity {
         // Disable Buttons , right now just return button but if needed more can do switch case
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
-                return true;
+                if (start_flg && !pause_flg) {
+                    pauseGame();
+                    return true;
+                }
+                return super.dispatchKeyEvent(event);
         }
 
         return super.dispatchKeyEvent(event);

@@ -66,14 +66,14 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        // Disable Return Button
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
-                return true;
-        }
-
-        return super.dispatchKeyEvent(event);
-    }
+//    @Override
+//    public boolean dispatchKeyEvent(KeyEvent event) {
+//        // Disable Return Button
+//        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+//            if(event.getKeyCode()==KeyEvent.KEYCODE_BACK)
+//                return true;
+//        }
+//
+//        return super.dispatchKeyEvent(event);
+//    }
 }

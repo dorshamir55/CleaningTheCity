@@ -87,6 +87,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:visibility="invisible"
+                android:clickable="false"
                 android:background="@drawable/ic_pause"
                 />
         </LinearLayout>
